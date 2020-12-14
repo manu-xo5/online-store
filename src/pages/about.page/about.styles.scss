@@ -1,0 +1,36 @@
+main#about-page {
+  margin: 5rem;
+  padding: 3rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: #eee;
+
+  header {
+    text-align: center;
+  }
+  article {
+    p {
+      i {
+        display: block;
+        text-align: right;
+      }
+    }
+
+    & * + * {
+      margin-top: 1rem;
+    }
+  }
+
+  & > * + * {
+    margin-top: 5rem;
+  }
+}
+strong,
+h1,
+h2,
+h3 {
+  letter-spacing: 1px;
+}
+p {
+  line-height: 1.6;
+}

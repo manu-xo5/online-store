@@ -1,0 +1,15 @@
+.cat-item {
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: box-shadow 0.1s ease;
+
+  &:hover {
+    box-shadow: 0 0 5px -2px;
+  }
+}

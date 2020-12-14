@@ -1,0 +1,14 @@
+$gap: 10rem;
+main#signin {
+  padding: 4rem $gap;
+  gap: $gap;
+  display: flex;
+
+  form {
+    flex: 1;
+
+    & > * + * {
+      margin-top: 2rem;
+    }
+  }
+}

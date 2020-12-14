@@ -1,0 +1,78 @@
+@import "../../variables";
+
+header#main nav {
+  padding: 1.25rem 8rem;
+  display: block;
+  background-color: $pri-bg;
+
+  a {
+    color: #ffffff;
+  }
+
+  & > * + * {
+    margin-left: 3.5rem;
+  }
+}
+
+.dropdown {
+  position: relative;
+
+  &:hover &__menu {
+    display: block;
+    animation: fadeIn ease-out 0.2s forwards;
+  }
+
+  &__menu {
+    padding: 0.5rem;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    width: max-content;
+    background-color: #fff;
+    opacity: 0;
+    border: 1px solid;
+    border-radius: 5px;
+    list-style: none;
+    z-index: 10;
+
+    li {
+      a {
+        padding: 0.5rem 1rem;
+        display: block;
+        border-radius: 3px;
+        text-decoration: none;
+        color: inherit;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+      }
+    }
+  }
+}
+
+.user-avator {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .wrap {
+    padding: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  from {
+    opacity: 0;
+    transform: translateY(-1rem);
+  }
+}

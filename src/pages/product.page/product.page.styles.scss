@@ -1,0 +1,116 @@
+@import '../../variables';
+
+main#productpage {
+  padding: 2rem;
+  display: flex;
+
+  h4#reviews {
+    color: #444;
+  }
+
+  img {
+    min-height: 512px;
+    display: block;
+    width: 90%;
+    object-fit: cover;
+  }
+
+  .body {
+    padding: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .back {
+      margin-bottom: 1rem;
+      background: none;
+      border: none;
+      color: blue;
+      cursor: pointer;
+    }
+
+    .cat {
+      margin-bottom: 1rem;
+      color: #888;
+    }
+
+    #reviews {
+      margin-bottom: 2rem;
+    }
+
+    span.colorbutton {
+      display: inline-block;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background-color: red;
+    }
+
+    input.colorinput {
+      display: none;
+
+      &:checked + span span {
+        box-shadow: 0 0 0 1px #fff, 0 0 0 3px #333;
+      }
+    }
+
+    button {
+      &.add-to-cart {
+        animation: addtocart 2s linear forwards;
+        @keyframes addtocart {
+          from {
+            background-color: currentColor;
+          }
+          to {
+            background-color: $pri-txt-c;
+          }
+        }
+      }
+    }
+
+    .field-group {
+      margin: 1rem 0;
+    }
+
+    .field-name {
+      margin-bottom: 0.75rem;
+    }
+
+    .quality {
+      margin: 0;
+      margin-bottom: 1rem;
+      span {
+        padding: 0.4rem 2rem 0.25rem;
+        box-shadow: 0 0 0px 1px #555;
+      }
+
+      &:first-of-type span {
+        border-radius: 5px 0 0 5px;
+      }
+
+      &:last-of-type span {
+        border-radius: 0 5px 5px 0;
+      }
+    }
+    .quality input {
+      display: none;
+      &:checked + span {
+        box-shadow: 0 0 0 3px #555;
+      }
+    }
+
+    label {
+      margin: 0 1ch;
+      display: inline-block;
+
+      input[type='radio'] {
+        margin-left: 0.5ch;
+      }
+    }
+  }
+
+  & > * {
+    flex: 1;
+  }
+}

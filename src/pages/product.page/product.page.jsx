@@ -1,21 +1,10 @@
 import './product.page.styles.scss';
-
 import React from 'react';
-
-import useCartActions from 'actions/use-cart-action';
-import { useUser } from 'context/user';
+import { useCart as useCartActions } from 'actions/use-cart-action';
+import { useHistory } from 'react-router-dom';
 import Form, { Button } from '../../components/Form';
-
-import { SearchDB, CAROSEL_ITEMS } from '../../constants/fake-database';
-
-const DB = new Map();
-window.DB = DB;
-JSON.parse(SearchDB).forEach(item => {
-  DB.set(item.id, item);
-});
-CAROSEL_ITEMS.forEach(item => {
-  DB.set(item.id.toString(), item);
-});
+import SearchDB from '../../constants/search-data.json';
+import { CAROSEL_ITEMS } from '../../constants/fake-database';
 
 const randBgc = () => {
   const ran = () => Math.floor(Math.random() * 256);
@@ -23,111 +12,119 @@ const randBgc = () => {
     backgroundColor: `rgb(${ran()},${ran()},${ran()})`,
   };
 };
+const colors = [randBgc(), randBgc(), randBgc()];
+const stars = (Math.random() + 4).toFixed(1);
+const reviews = (Math.random() + 500).toFixed();
 
 const ProductPage = ({ match }) => {
+  const history = useHistory();
+  const { addToCart, cart } = useCartActions();
+
   const { pid } = match.params;
-  const product = DB.get(pid);
+  const inCart = cart.some((item) => item.pid === pid);
+  const product = [...SearchDB, ...CAROSEL_ITEMS].find(
+    (item) => item._id.toString() === pid
+  );
 
-  const cart = useCartActions();
-  const { userState } = useUser();
-  const inCart = userState.cart.includes(pid);
-
-  const stars = (Math.random() + 4).toFixed(1);
-  const reviews = (Math.random() + 500).toFixed();
-
-  function addToCart(ev) {
+  function handleAddToCart(ev) {
     ev.preventDefault();
-    const fd = new FormData();
-    for (const elem in ev.elements) {
-      fd.append(elem.name, elem.value);
-    }
-    console.log(fd, { t: ev.target });
-    // cart.addToCart(pid);
+    const specs = Object.fromEntries(new FormData(ev.currentTarget));
+    addToCart({ pid, ...specs, product });
   }
 
   return (
-    <main id='productpage'>
+    <main id="productpage">
       <div>
-        <img src='//picsum.photos/512' alt={pid} />
+        <img src={product.imgUrl} alt={pid} />
       </div>
-      <div className='body'>
-        <button className='back'> Back to Search Results </button>
-        <div className='cat'>
+
+      <div className="body">
+        <button className="back"> Back to Search Results </button>
+        <div className="cat">
           <p>Category</p>
           <h1> {product.name || product.title} </h1>
         </div>
-        <h4 id='reviews'>
+        <h4 id="reviews">
           Stars: {stars} ({reviews} Reviews)
         </h4>
-        <form onSubmit={addToCart}>
-          <div className='field-group'>
-            <p className='field-name'> Select Quality </p>
+
+        <form onSubmit={handleAddToCart}>
+          <div className="field-group">
+            <p className="field-name"> Select Quality </p>
             <Form.Input
-              labelClass='quality'
-              label='Basic'
-              value='basic'
-              name='quality'
-              type='radio'
+              labelClass="quality"
+              label="Basic"
+              value="basic"
+              name="quality"
+              type="radio"
             />
             <Form.Input
-              labelClass='quality'
-              label='Golden'
-              value='golden'
-              name='quality'
-              type='radio'
+              labelClass="quality"
+              label="Golden"
+              value="golden"
+              name="quality"
+              type="radio"
               defaultChecked
             />
             <Form.Input
-              labelClass='quality'
-              label='Platinum'
-              value='platinum'
-              name='quality'
-              type='radio'
+              labelClass="quality"
+              label="Platinum"
+              value="platinum"
+              name="quality"
+              type="radio"
             />
           </div>
-          <div className='field-group'>
-            <p className='field-name'> Style </p>
+          <div className="field-group">
+            <p className="field-name"> Color </p>
             <Form.Input
-              label={<ColorButton />}
-              type='radio'
-              name='color'
-              value='red'
-              className='colorinput'
+              label={<ColorButton style={colors[0]} />}
+              type="radio"
+              name="color"
+              value="red"
+              className="colorinput"
               defaultChecked
             />
             <Form.Input
-              label={<ColorButton />}
-              type='radio'
-              name='color'
-              value='yellow'
-              className='colorinput'
+              label={<ColorButton style={colors[1]} />}
+              type="radio"
+              name="color"
+              value="yellow"
+              className="colorinput"
             />
             <Form.Input
-              label={<ColorButton />}
-              type='radio'
-              value='skyblue'
-              name='color'
-              className='colorinput'
+              label={<ColorButton style={colors[2]} />}
+              type="radio"
+              value="skyblue"
+              name="color"
+              className="colorinput"
             />
           </div>
-          <div className='field-group'>
-            <p className='field-name'> Size </p>
+          <div className="field-group">
+            <p className="field-name"> Size </p>
             <Form.Input
-              label='Xs'
-              value='xs'
-              type='radio'
-              name='size'
+              label="Xs"
+              value="xs"
+              type="radio"
+              name="size"
               defaultChecked
             />
-            <Form.Input label='Sm' value='sm' type='radio' name='size' />
-            <Form.Input label='Md' value='md' type='radio' name='size' />
-            <Form.Input label='Lg' value='lg' type='radio' name='size' />
-            <Form.Input label='Xl' value='xl' type='radio' name='size' />
+            <Form.Input label="Sm" value="sm" type="radio" name="size" />
+            <Form.Input label="Md" value="md" type="radio" name="size" />
+            <Form.Input label="Lg" value="lg" type="radio" name="size" />
+            <Form.Input label="Xl" value="xl" type="radio" name="size" />
           </div>
           {inCart ? (
-            <Button.Primary className='add-to-cart'>Added !</Button.Primary>
+            <>
+              <span>Added!</span>
+              <Button.Secondary
+                style={{ marginLeft: 10 }}
+                onClick={() => history.push('/profile/cart')}
+              >
+                Continue to Cart
+              </Button.Secondary>
+            </>
           ) : (
-            <Button.Primary>Add to Cart</Button.Primary>
+            <Button.Primary type="submit">Add to Cart</Button.Primary>
           )}
         </form>
       </div>
@@ -135,8 +132,8 @@ const ProductPage = ({ match }) => {
   );
 };
 
-function ColorButton() {
-  return <span style={randBgc()} className='colorbutton' />;
+function ColorButton(props) {
+  return <span {...props} className="colorbutton" />;
 }
 
 export default ProductPage;

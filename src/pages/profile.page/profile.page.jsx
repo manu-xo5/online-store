@@ -1,12 +1,12 @@
-import React from "react";
-import AvatarDefault from "../../assets/avatar.jpg";
-import { Switch, Route, Link, Redirect } from "react-router-dom";
-import "./profile.styles.scss";
+import React from 'react';
+import AvatarDefault from '../../assets/avatar.jpg';
+import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import './profile.styles.scss';
 
-import BasicInfoPage from "./components/basic-info";
-import CartPage from "./components/cart-page";
-import { Input, Button } from "../../components/Form";
-
+import BasicInfoPage from './components/basic-info';
+import CartPage from './components/cart-page';
+import OrdersPage from './orders.page';
+import { Input, Button } from '../../components/Form';
 
 const RedeemPage = () => (
   <main id="redeem">
@@ -23,7 +23,7 @@ const RedeemPage = () => (
   </main>
 );
 
-const ProfilePage = props => {
+const ProfilePage = (props) => {
   return (
     <main id="profile">
       <div className="profile__sidebar">
@@ -39,6 +39,7 @@ const ProfilePage = props => {
         <Switch>
           <Route path="/profile/basicinfo" component={BasicInfoPage} />
           <Route path="/profile/cart" component={CartPage} />
+          <Route path="/profile/orders" component={OrdersPage} />
           <Route path="/profile/redeem" render={() => <RedeemPage />} />
           <Route
             path="/profile/signout"
@@ -55,7 +56,7 @@ const ProfilePage = props => {
   );
 };
 
-function Sidebar() {
+const Sidebar = () => {
   return (
     <nav>
       <ul>
@@ -66,7 +67,7 @@ function Sidebar() {
           <Link to="/profile/redeem">Redeem</Link>
         </li>
         <li>
-          <Link to="/profile/cart">Orders</Link>
+          <Link to="/profile/orders">Orders</Link>
         </li>
         <li>
           <Link to="/profile/signout">Sign Out</Link>
@@ -74,6 +75,6 @@ function Sidebar() {
       </ul>
     </nav>
   );
-}
+};
 
 export default ProfilePage;

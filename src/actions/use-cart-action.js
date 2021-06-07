@@ -1,26 +1,34 @@
-import { useUser } from "context/user";
-import { useHistory } from "react-router-dom";
+import { useUser } from 'context/user';
+import * as React from 'react';
 
-export default () => {
-  const {
-    dispatch,
-    userState: { cart },
-    userState,
-  } = useUser();
-  const history = useHistory()
+const CartContext = React.createContext([]);
+
+export const CartProvider = ({ children }) => {
+  const cartState = React.useState([]);
+  return (
+    <CartContext.Provider value={cartState}>{children}</CartContext.Provider>
+  );
+};
+
+export const useCart = () => {
+  const [cart, setCart] = React.useContext(CartContext);
+
+  const addToCart = (cartProduct) => {
+    setCart((state) => [cartProduct, ...state]);
+  };
+
+  const removeFromCart = (pid) => {
+    setCart((state) => state.filter((cartItem) => cartItem.pid !== pid));
+  };
+
+  const emptyCart = () => {
+    setCart([]);
+  };
+
   return {
     cart,
-    addToCart: (pid) => {
-      if (userState.displayName) {
-        dispatch({
-          type: "ADD_ITEM_TO_CART",
-          payload: {
-            pid,
-          },
-        });
-      }else {
-        history.push('/signin')
-      }
-    },
+    addToCart,
+    removeFromCart,
+    emptyCart,
   };
 };

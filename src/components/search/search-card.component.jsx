@@ -3,7 +3,7 @@ import { Button } from '../Form';
 import { useHistory } from 'react-router-dom';
 import { BsBag } from 'react-icons/bs';
 
-import useCartActions from 'actions/use-cart-action';
+import { useCart as useCartActions } from 'actions/use-cart-action';
 
 const styles = {
   Container: {
@@ -20,10 +20,16 @@ const styles = {
     minWidth: 250,
     boxShadow: '0 0 3px #555',
     borderRadius: 3,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   Img: {
     display: 'block',
+    width: '10rem',
+    height: '10rem',
+    objectFit: 'contain',
     borderRadius: 3,
   },
   Body: {
@@ -43,8 +49,7 @@ const styles = {
   },
 };
 
-const SearchCard = ({ title, desc, price, options, isInCart, id }) => {
-  const { addToCart } = useCartActions();
+const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
   const history = useHistory();
 
   return (
@@ -52,8 +57,9 @@ const SearchCard = ({ title, desc, price, options, isInCart, id }) => {
       <div style={styles.Thumbnail}>
         <img
           style={styles.Img}
-          alt='place holder for product card'
-          src={`//picsum.photos/250?random=${id}`}
+          alt="place holder for product card"
+          // src={`//picsum.photos/250?random=${id}`}
+          src={`/static/img/mobiles/${imgUrl}`}
         />
       </div>
       <div style={styles.Body}>
@@ -66,17 +72,12 @@ const SearchCard = ({ title, desc, price, options, isInCart, id }) => {
           {desc}
         </p>
         <br />
-        <small>options - {options}</small>
+        <small>Options - {points.join(', ')}</small>
         <div style={styles.Actions}>
-          {isInCart ? (
-            <Button.Primary disabled>In Cart</Button.Primary>
-          ) : (
-            <Button.Primary onClick={() => addToCart(id)}>
-              <BsBag size='11' strokeWidth='1.1' />
-            </Button.Primary>
-          )}
+          {isInCart ? <p>In Cart!</p> : null}
+
           <Button.Secondary
-            onClick={() => history.push(`/products/overview/${id}`)}
+            onClick={() => history.push(`/products/overview/${_id}`)}
           >
             Overview
           </Button.Secondary>

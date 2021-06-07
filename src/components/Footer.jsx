@@ -4,18 +4,18 @@ import { ALink } from './utilities/utilities';
 const Footer = () => (
   <footer>
     <h3
-      className='BackToTop'
+      className="BackToTop"
       onClick={() => (document.documentElement.scrollTop = 0)}
     >
       Back to Top
     </h3>
     <header>
-      <img src='/resources/logo1.png' alt='logo' />
+      <img src="/resources/logo1.png" alt="logo" />
       <h3>the Online Store</h3>
     </header>
-    <div className='about'>
+    <div className="about">
       <div>
-        <ALink to='/about'>
+        <ALink to="/about">
           <h3>About</h3>
         </ALink>
         <p>
@@ -25,25 +25,31 @@ const Footer = () => (
           Mohit.
         </p>
         <br />
-        <img src='/resources/cards.png' alt='smart cards' />
+        <img src="/resources/cards.png" alt="smart cards" />
       </div>
       <div>
         <h3>Quick Links</h3>
         <ul>
           <li>
-            <ALink to='/profile/account'>My Account</ALink>
+            <ALink to="/profile/account">My Account</ALink>
           </li>
           <li>
-            <ALink to='/cart'>Cart</ALink>
+            <ALink to="/cart">Cart</ALink>
           </li>
           <li>
-            <ALink to='/profile/order'>Track Orders</ALink>
+            <ALink to="/profile/order">Track Orders</ALink>
           </li>
           <li>
-            <ALink to='/profile/signout'>SignOut</ALink>
+            <ALink to="/profile/signout">SignOut</ALink>
           </li>
           <li>
-            <ALink href='//github.com/manu-xo5/'>Our Blog</ALink>
+            <ALink
+              href="https://manu-xo5.github.io"
+              target="_black"
+              rel="noreferrer noopener"
+            >
+              Our Blog
+            </ALink>
           </li>
         </ul>
       </div>

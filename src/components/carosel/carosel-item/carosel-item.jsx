@@ -4,22 +4,22 @@ import { List } from '../../utilities/utilities';
 import { useHistory } from 'react-router-dom';
 
 import './carosel-item.scss';
-const CaroselItem = ({ style, title, imgUrl, manufacturer, points, id }) => {
+const CaroselItem = ({ style, title, imgUrl, manufacturer, points, _id }) => {
   const history = useHistory();
 
   return (
-    <article className='CaroselItem'>
-      <h2 className='CaroselItem__title'>{title}</h2>
-      <img className='CaroselItem__img' src={imgUrl} alt={title} />
-      <div className='CaroselItem__specs-div'>
-        <h2 className='CaroselItem__manufacturer'>{manufacturer}</h2>
+    <article className="CaroselItem">
+      <h2 className="CaroselItem__title">{title}</h2>
+      <img className="CaroselItem__img" src={imgUrl} alt={title} />
+      <div className="CaroselItem__specs-div">
+        <h2 className="CaroselItem__manufacturer">{manufacturer}</h2>
         <List
-          Parent='ul'
+          Parent="ul"
           list={points}
-          render={point => (
+          render={(point) => (
             <li
               key={point}
-              className='CaroselItem__specs-li'
+              className="CaroselItem__specs-li"
               children={point}
             />
           )}
@@ -36,7 +36,7 @@ const CaroselItem = ({ style, title, imgUrl, manufacturer, points, id }) => {
             border: '3px solid var(--primary)',
             backgroundColor: 'transparent',
           }}
-          onClick={() => history.push(`/products/overview/${id}`)}
+          onClick={() => history.push(`/products/overview/${_id}`)}
         >
           Buy now
         </Button.Primary>

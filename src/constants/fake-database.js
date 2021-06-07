@@ -11,58 +11,10 @@ export const FT_ITEMS = [
   'Sound System\nBy LG',
 ];
 
-function Item({ title, manufacturer, points, imgUrl }) {
-  return {
-    id:
-      // Date.now().toString() +
-      // Math.random().toString() +
-      [...title].reduce((acc, char) => acc + char.charCodeAt(0), ''),
-    title,
-    manufacturer,
-    points,
-    imgUrl: require('../assets/mobiles/' + imgUrl),
-  };
-}
-
-export const CAROSEL_ITEMS = MobileFiles.map(Item);
-// export const CAROSEL_ITEMS = [
-//   Item({
-//     title: 'M J\nJean',
-//     imgUrl: 'download.jpg',
-//     manufacturer: 'Supa Dry',
-//     points: [
-//       'Cotton Thread',
-//       'Blue Color',
-//       'Batch-dyed taffeta',
-//       'Made in India',
-//       'Now Just for 1,900 rs',
-//     ],
-//   }),
-//   Item({
-//     title: 'U70\n5G',
-//     imgUrl: '0..webp',
-//     manufacturer: 'Samsung',
-//     points: [
-//       'U70 (256 GB | 8GB)',
-//       'Oled display',
-//       '5G & wifi 6',
-//       'Android 10',
-//       'Now Just for 37,000 rs',
-//     ],
-//   }),
-//   Item({
-//     title: 'Reno\nRefridgrator',
-//     imgUrl: 'download.jpg',
-//     manufacturer: 'GL',
-//     points: [
-//       'Smart Inverter Compressor',
-//       'Dual Fridge',
-//       'Multi Air Flow',
-//       'Royale Handle',
-//       'Moist ‘N’ Fresh',
-//     ],
-//   }),
-// ];
+export const CAROSEL_ITEMS = MobileFiles.all.map((data) => ({
+  ...data,
+  imgUrl: require('../assets/mobiles/' + data.imgUrl),
+}));
 
 export const MainCategories = [
   { Icon: 'FaMars', title: 'Male' },
@@ -73,6 +25,3 @@ export const MainCategories = [
   { Icon: 'FaBook', title: 'Books' },
   { Icon: 'FaTrello', title: 'Toys' },
 ];
-
-export const SearchDB =
-  '[{"title":"Lorem by Ipsum","price":"939","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470713005"},{"title":"Lorem by Ipsum","price":"569","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470362957"},{"title":"Lorem by Ipsum","price":"502","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597469906818"},{"title":"Lorem by Ipsum","price":"27","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597469795931"},{"title":"Lorem by Ipsum","price":"46","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470421159"},{"title":"Lorem by Ipsum","price":"854","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470671817"},{"title":"Lorem by Ipsum","price":"100","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470234013"},{"title":"Lorem by Ipsum","price":"772","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470445502"},{"title":"Lorem by Ipsum","price":"999","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470219077"},{"title":"Lorem by Ipsum","price":"419","desc":"Established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more","options":"A, B, Z","id":"1597470633293"}]';

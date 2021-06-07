@@ -32,9 +32,15 @@ function randomPoints() {
 function t() {
   const files = fs.readdirSync('./assets/mobiles', 'utf-8');
   const items = [];
+  let i = 0;
   for (const filename of files) {
+    i++;
     const [title, manufacturer = filename] = filename.split(/[-.]/);
     items.push({
+      _id:
+        Math.random().toString().replace('0.', '') +
+        i +
+        title.replace(' ', '0'),
       title,
       imgUrl: filename,
       manufacturer,

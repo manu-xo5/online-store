@@ -8,43 +8,43 @@ import { ALink } from '../utilities/utilities';
 import SeacrhInput from '../search/search-box.component';
 import AvatarImg from '../../assets/avatar.jpg';
 
-const User = ({ user }) => {
+const User = () => {
   const { userState } = useUser();
   const { displayName, photoURL } = userState.currentUser;
   const text = displayName || 'SignIn';
   const image = photoURL || AvatarImg;
   const isLogged = Boolean(displayName);
   return (
-    <div className='user-avator'>
-      <Link to='/profile/cart'>
-        <FiShoppingCart fontSize='24' />
+    <div className="user-avator">
+      <Link to="/profile/cart">
+        <FiShoppingCart fontSize="24" />
       </Link>
-      <div className='dropdown'>
+      <div className="dropdown">
         <ALink
-          className='wrap'
+          className="wrap"
           to={displayName ? '/profile/basicinfo' : '/signin'}
         >
           {text}
           <img
-            referrerPolicy='no-referrer'
-            className='avator'
+            referrerPolicy="no-referrer"
+            className="avator"
             src={image}
-            alt='avatar'
+            alt="avatar"
           />
         </ALink>
         {isLogged ? (
-          <ul className='dropdown__menu'>
+          <ul className="dropdown__menu">
             <li>
-              <Link to='/profile/basicinfo'>NoName</Link>
+              <Link to="/profile/basicinfo">{displayName}</Link>
             </li>
             <li>
-              <Link to='/profile/cart'>Cart</Link>
+              <Link to="/profile/cart">Cart</Link>
             </li>
             <li>
-              <Link to='#'>Purchase History</Link>
+              <Link to="/profile/orders">Orders</Link>
             </li>
             <li>
-              <Link to='/'>Sign Out</Link>
+              <Link to="/">Sign Out</Link>
             </li>
           </ul>
         ) : null}
@@ -55,21 +55,21 @@ const User = ({ user }) => {
 
 const Nav = () => {
   return (
-    <header id='main'>
-      <div className='ActionBar'>
-        <img src='/resources/logo1.png' alt='logo1' />
+    <header id="main">
+      <div className="ActionBar">
+        <img src="/resources/logo1.png" alt="logo1" />
         <SeacrhInput />
         <User />
       </div>
-      <nav className='Nav'>
-        <ALink to='/'>Home</ALink>
-        <ALink to='/brands/oppo'>
-          <span className='New'>NEW</span>
+      <nav className="Nav">
+        <ALink to="/">Home</ALink>
+        <ALink to="/brands/oppo">
+          <span className="New">NEW</span>
           Oppo
         </ALink>
-        <ALink to='/brands/vivo'>Vivo</ALink>
-        <ALink to='/brands/redmi'>Redmi</ALink>
-        <ALink to='/contact'>Contact Us</ALink>
+        <ALink to="/brands/vivo">Vivo</ALink>
+        <ALink to="/brands/redmi">Redmi</ALink>
+        <ALink to="/contact">Contact Us</ALink>
       </nav>
     </header>
   );

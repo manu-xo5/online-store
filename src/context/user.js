@@ -2,7 +2,10 @@ import * as React from 'react';
 import { useReducer, useContext, createContext } from 'react';
 
 const initUser = { currentUser: {}, orders: [] };
-const UserContext = createContext(initUser);
+const UserContext = createContext({
+  userState: initUser,
+  dispatch: () => {},
+});
 
 const userReducer = (state, action) => {
   switch (action.type) {
@@ -15,7 +18,13 @@ const userReducer = (state, action) => {
       return { ...state, currentUser: { ...payload, displayName } };
     }
     case 'ADD_ORDERS': {
-      state.orders.push(...action.payload);
+      const orders = action.payload;
+      const totalCost = orders.reduce(
+        (total, item) => total + item.product.price,
+        0
+      );
+      state.currentUser.balance -= totalCost;
+      state.orders.push(...orders);
       return { ...state };
     }
     case 'CLEAR_ORDERS': {
@@ -38,8 +47,8 @@ const UserProvider = ({ children }) => {
 
 const useUser = () => useContext(UserContext);
 
-const addOrders = (dispatch, orders) => {
-  dispatch({ type: 'ADD_ORDERS', payload: orders });
+const addOrders = (userDispatch, orders) => {
+  userDispatch({ type: 'ADD_ORDERS', payload: orders });
 };
 
 const emptyOrders = (dispatch) => {

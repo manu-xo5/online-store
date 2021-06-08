@@ -1,9 +1,6 @@
 import React from 'react';
-import { Button } from '../Form';
 import { useHistory } from 'react-router-dom';
-import { BsBag } from 'react-icons/bs';
-
-import { useCart as useCartActions } from 'actions/use-cart-action';
+import { Button } from '../Form';
 
 const styles = {
   Container: {

@@ -7,6 +7,7 @@ import BasicInfoPage from './components/basic-info';
 import CartPage from './components/cart-page';
 import OrdersPage from './orders.page';
 import { Input, Button } from '../../components/Form';
+import { useUser } from '../../context/user';
 
 const RedeemPage = () => (
   <main id="redeem">
@@ -24,13 +25,15 @@ const RedeemPage = () => (
 );
 
 const ProfilePage = (props) => {
+  const { currentUser } = useUser().userState;
+
   return (
     <main id="profile">
       <div className="profile__sidebar">
         <img src={AvatarDefault} alt="avator" />
         <div>
-          <h2>place holder</h2>
-          <h4>Rs. 99.00</h4>
+          <h2>{currentUser.displayName}</h2>
+          <h4>Rs. {currentUser.balance}</h4>
           <p>balance</p>
         </div>
         <Sidebar />

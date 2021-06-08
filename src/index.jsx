@@ -5,7 +5,7 @@ import { UserProvider } from './context/user';
 import './style.scss';
 
 import App from 'components/app';
-import { CartProvider } from 'actions/use-cart-action';
+import { CartProvider } from './context/cart';
 ReactDom.render(
   <BrowserRouter>
     <UserProvider>

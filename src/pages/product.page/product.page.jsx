@@ -1,6 +1,6 @@
 import './product.page.styles.scss';
 import React from 'react';
-import { useCart as useCartActions } from 'actions/use-cart-action';
+import { useCart as useCartActions } from '../../context/cart';
 import { useHistory } from 'react-router-dom';
 import Form, { Button } from '../../components/Form';
 import SearchDB from '../../constants/search-data.json';
@@ -41,13 +41,16 @@ const ProductPage = ({ match }) => {
       <div className="body">
         <button className="back"> Back to Search Results </button>
         <div className="cat">
-          <p>Category</p>
+          <p>Category `{product.manufacturer}`</p>
           <h1> {product.name || product.title} </h1>
         </div>
         <h4 id="reviews">
           Stars: {stars} ({reviews} Reviews)
         </h4>
-
+        <h2>
+          Price: Rs.
+          <span style={{ color: 'var(--primary)' }}>{product.price}</span>
+        </h2>
         <form onSubmit={handleAddToCart}>
           <div className="field-group">
             <p className="field-name"> Select Quality </p>

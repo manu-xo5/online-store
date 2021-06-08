@@ -1,7 +1,7 @@
 import React from 'react';
 import db from '../constants/mobileFiles.json';
 import SearchCard from '../components/search/search-card.component';
-import { useCart as useCartAction } from 'actions/use-cart-action';
+import { useCart as useCartAction } from '../context/cart';
 
 const styles = {
   Container: {

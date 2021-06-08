@@ -1,18 +1,29 @@
 import React from 'react';
 import { List } from 'components/utilities';
 import { Button } from 'components/Form';
-import { useCart } from 'actions/use-cart-action';
+import { useCart } from '../../../context/cart';
 import { useUser, addOrders } from 'context/user';
 
 export default () => {
   const { cart, removeFromCart, emptyCart } = useCart();
-  const { dispatch } = useUser();
+  const {
+    dispatch,
+    userState: { currentUser },
+  } = useUser();
+
+  const totalCost = cart.reduce((total, item) => total + item.product.price, 0);
 
   const handleCheckout = () => {
     const orders = cart.map((cartItem) => ({
       ...cartItem,
       orderedOn: new Date().toISOString(),
     }));
+
+    if (totalCost > currentUser.balance) {
+      console.log('Not Enough Balance');
+      return;
+    }
+
     addOrders(dispatch, orders);
     emptyCart();
   };
@@ -52,6 +63,9 @@ export default () => {
         )}
       />
       <div>
+        <p>
+          Total: <span style={{ color: 'var(--primary)' }}>Rs.{totalCost}</span>
+        </p>
         <Button.Primary onClick={handleCheckout}>Checkout</Button.Primary>{' '}
       </div>
     </main>

@@ -8,6 +8,7 @@ import CartPage from './components/cart-page';
 import OrdersPage from './orders.page';
 import { Input, Button } from '../../components/Form';
 import { useUser } from '../../context/user';
+import DeliveryStatusPage from './orders.page/delivery-status.page/delivery-status.page';
 
 const RedeemPage = () => (
   <main id="redeem">
@@ -42,8 +43,12 @@ const ProfilePage = (props) => {
         <Switch>
           <Route path="/profile/basicinfo" component={BasicInfoPage} />
           <Route path="/profile/cart" component={CartPage} />
+          <Route
+            path="/profile/orders/delivery-status"
+            component={DeliveryStatusPage}
+          />
           <Route path="/profile/orders" component={OrdersPage} />
-          <Route path="/profile/redeem" render={() => <RedeemPage />} />
+          <Route path="/profile/redeem" component={RedeemPage} />
           <Route
             path="/profile/signout"
             render={() => {

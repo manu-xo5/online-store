@@ -6,11 +6,9 @@ import { Link } from 'react-router-dom';
 import Carosel from '../components/carosel';
 import { List } from '../components/utilities';
 import { FtItem } from '../components/FeaturedPage';
-import {
-  FT_ITEMS,
-  CAROSEL_ITEMS,
-  MainCategories,
-} from '../constants/fake-database';
+import useAsync from '../hooks/useAsync';
+import { fetchCategories } from '../api-functions/categories';
+import { fetchMobileFiles } from '../api-functions/mobileFiles';
 
 const styles = {
   CatCon: {
@@ -24,45 +22,74 @@ const styles = {
   },
 };
 const Home = () => {
+  const [categories, runCategories] = useAsync();
+  const [mobileFiles, runMobileFiles] = useAsync();
+
   useEffect(() => {
     document.documentElement.scrollTop = 0;
-  }, []);
+    runCategories(fetchCategories());
+    runMobileFiles(fetchMobileFiles());
+  }, [runCategories, runMobileFiles]);
+
   return (
     <>
-      <div className='fadein'>
-        <Carosel list={CAROSEL_ITEMS.slice(0, 4)} />
-        <section id='featured'></section>
-        <section id='popular'>
-          <div className='bar'>
-            <h2>Popular / Best Products</h2>
-            <Link to='/featured' className='ALink'>
-              Show All
-            </Link>
-          </div>
-          <div className='items'>
-            {CAROSEL_ITEMS.map((item, index) => (
-              <FtItem
-                key={item.title || item}
-                title={item.title || item}
-                src={item.imgUrl}
-                item={item}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
-      <section id='category'>
-        <div className='bar'>
-          <h2>Browse by Category</h2>
-        </div>
-        <List
-          style={styles.CatCon}
-          list={MainCategories}
-          render={catprops => <CatCard key={catprops.title} {...catprops} />}
-        />
-      </section>
+      <div className="fadein">
+        {mobileFiles.status === 'success' ? (
+          <Carosel list={mobileFiles.data.all.slice(0, 4)} />
+        ) : mobileFiles.status === 'loading' ? (
+          <p>Loading Fresh Items</p>
+        ) : mobileFiles.status === 'error' ? (
+          <p>{mobileFiles.error}</p>
+        ) : null}
 
-      <h2 style={styles.Tnq}>Thanks for Visitin'</h2>
+        <section id="featured"></section>
+
+        {mobileFiles.status === 'success' ? (
+          <section id="popular">
+            <div className="bar">
+              <h2>Popular / Best Products</h2>
+              <Link to="/featured" className="ALink">
+                Show All
+              </Link>
+            </div>
+            <div className="items">
+              {mobileFiles.data.all.map((item) => (
+                <FtItem
+                  key={item.title || item}
+                  title={item.title || item}
+                  src={item.imgUrl}
+                  item={item}
+                />
+              ))}
+            </div>
+          </section>
+        ) : mobileFiles.status === 'loading' ? (
+          <p>Loading All Mobiles</p>
+        ) : mobileFiles.status === 'error' ? (
+          <p>{mobileFiles.error}</p>
+        ) : null}
+      </div>
+
+      {categories.status === 'loading' ? (
+        <p>Loading</p>
+      ) : categories.status === 'success' ? (
+        <section id="category">
+          <div className="bar">
+            <h2>Browse by Category</h2>
+          </div>
+          <List
+            style={styles.CatCon}
+            list={categories.data}
+            render={(catprops) => (
+              <CatCard key={catprops.title} {...catprops} />
+            )}
+          />
+        </section>
+      ) : categories.error ? (
+        <p>{categories.error}</p>
+      ) : null}
+
+      <h2 style={styles.Tnq}>Thanks for Visitin&apos;</h2>
     </>
   );
 };

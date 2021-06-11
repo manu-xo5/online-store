@@ -1,7 +1,8 @@
-import React from 'react';
-import db from '../constants/mobileFiles.json';
+import React, { useEffect } from 'react';
 import SearchCard from '../components/search/search-card.component';
 import { useCart as useCartAction } from '../context/cart';
+import useAsync from '../hooks/useAsync';
+import { fetchMobileFiles } from '../api-functions/mobileFiles';
 
 const styles = {
   Container: {
@@ -14,21 +15,33 @@ const styles = {
 };
 
 const SearchPage = ({ match }) => {
+  const [mobileFiles, runMobileFiles] = useAsync();
+
+  useEffect(() => {
+    runMobileFiles(fetchMobileFiles());
+  }, [runMobileFiles]);
+
   const query = match.params.query;
   const { cart } = useCartAction();
   return (
     <main style={styles.Container}>
       <h1 style={styles.Heading}>Showing results for "{query}"</h1>
       <ul>
-        {db.all
-          .filter((product) => JSON.stringify(product).includes(query))
-          .map((product) => (
-            <SearchCard
-              key={product.id}
-              isInCart={cart.some((cartItem) => cartItem.pid === product._id)}
-              {...product}
-            />
-          ))}
+        {mobileFiles.status === 'success' ? (
+          mobileFiles.data.all
+            .filter((product) => JSON.stringify(product).includes(query))
+            .map((product) => (
+              <SearchCard
+                key={product.id}
+                isInCart={cart.some((cartItem) => cartItem.pid === product._id)}
+                {...product}
+              />
+            ))
+        ) : mobileFiles.status === 'loading' ? (
+          <p>Loading Mobiles</p>
+        ) : mobileFiles.status === 'error' ? (
+          <p>{mobileFiles.error}</p>
+        ) : null}
       </ul>
     </main>
   );

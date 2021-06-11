@@ -25,9 +25,6 @@ const Routes = () => {
         <PRoute path="/signin" component={SignIn} reverse />
         <Route path="/profile" component={Profile} />
         <Route path="/products/overview/:pid" component={ProductPage} />
-        <Route path="*">
-          <h1>oops! its a 404</h1>
-        </Route>
       </Switch>
     </Suspense>
   );

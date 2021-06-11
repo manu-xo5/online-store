@@ -2,7 +2,7 @@
   "all": [
     {
       "title": "5gs",
-      "imgUrl": "5gs-oppo.webp",
+      "imgUrl": "/static/img/mobiles/5gs-oppo.webp",
       "manufacturer": "oppo",
       "points": [
         "Cotton Thread",
@@ -16,7 +16,7 @@
     },
     {
       "title": "a31",
-      "imgUrl": "a31-oppo.png",
+      "imgUrl": "/static/img/mobiles/a31-oppo.png",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -30,7 +30,7 @@
     },
     {
       "title": "a3s",
-      "imgUrl": "a3s-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/a3s-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -44,7 +44,7 @@
     },
     {
       "title": "a5 4gb",
-      "imgUrl": "a5 4gb-oppo.webp",
+      "imgUrl": "/static/img/mobiles/a5 4gb-oppo.webp",
       "manufacturer": "oppo",
       "points": [
         "Cotton Thread",
@@ -58,7 +58,7 @@
     },
     {
       "title": "a52 white",
-      "imgUrl": "a52 white-oppo.png",
+      "imgUrl": "/static/img/mobiles/a52 white-oppo.png",
       "manufacturer": "oppo",
       "points": [
         "Cotton Thread",
@@ -72,7 +72,7 @@
     },
     {
       "title": "a5s",
-      "imgUrl": "a5s-oppo.webp",
+      "imgUrl": "/static/img/mobiles/a5s-oppo.webp",
       "manufacturer": "oppo",
       "points": [
         "Smart Inverter Compressor",
@@ -86,7 +86,7 @@
     },
     {
       "title": "a92s",
-      "imgUrl": "a92s-oppo.webp",
+      "imgUrl": "/static/img/mobiles/a92s-oppo.webp",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -100,7 +100,7 @@
     },
     {
       "title": "dcf silver",
-      "imgUrl": "dcf silver-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/dcf silver-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "Cotton Thread",
@@ -114,7 +114,7 @@
     },
     {
       "title": "f15 glassy",
-      "imgUrl": "f15 glassy-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/f15 glassy-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -128,7 +128,7 @@
     },
     {
       "title": "f15 ocean",
-      "imgUrl": "f15 ocean-oppo.png",
+      "imgUrl": "/static/img/mobiles/f15 ocean-oppo.png",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -142,7 +142,7 @@
     },
     {
       "title": "o 19",
-      "imgUrl": "o 19-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/o 19-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -156,7 +156,7 @@
     },
     {
       "title": "old school back",
-      "imgUrl": "old school back-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/old school back-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "Smart Inverter Compressor",
@@ -170,7 +170,7 @@
     },
     {
       "title": "punch hole",
-      "imgUrl": "punch hole-samsung.webp",
+      "imgUrl": "/static/img/mobiles/punch hole-samsung.webp",
       "manufacturer": "samsung",
       "points": [
         "U70 (256 GB | 8GB)",
@@ -184,7 +184,7 @@
     },
     {
       "title": "reno",
-      "imgUrl": "reno-oppo.jpg",
+      "imgUrl": "/static/img/mobiles/reno-oppo.jpg",
       "manufacturer": "oppo",
       "points": [
         "Cotton Thread",
@@ -198,7 +198,7 @@
     },
     {
       "title": "t red",
-      "imgUrl": "t red-oppo.webp",
+      "imgUrl": "/static/img/mobiles/t red-oppo.webp",
       "manufacturer": "oppo",
       "points": [
         "Smart Inverter Compressor",
@@ -213,7 +213,7 @@
   ],
   "553054930317915115gs": {
     "title": "5gs",
-    "imgUrl": "5gs-oppo.webp",
+    "imgUrl": "/static/img/mobiles/5gs-oppo.webp",
     "manufacturer": "oppo",
     "points": [
       "Cotton Thread",
@@ -227,7 +227,7 @@
   },
   "90959172019203432a31": {
     "title": "a31",
-    "imgUrl": "a31-oppo.png",
+    "imgUrl": "/static/img/mobiles/a31-oppo.png",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -241,7 +241,7 @@
   },
   "86230095939016253a3s": {
     "title": "a3s",
-    "imgUrl": "a3s-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/a3s-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -255,7 +255,7 @@
   },
   "487057362121171344a504gb": {
     "title": "a5 4gb",
-    "imgUrl": "a5 4gb-oppo.webp",
+    "imgUrl": "/static/img/mobiles/a5 4gb-oppo.webp",
     "manufacturer": "oppo",
     "points": [
       "Cotton Thread",
@@ -269,7 +269,7 @@
   },
   "353412625571564835a520white": {
     "title": "a52 white",
-    "imgUrl": "a52 white-oppo.png",
+    "imgUrl": "/static/img/mobiles/a52 white-oppo.png",
     "manufacturer": "oppo",
     "points": [
       "Cotton Thread",
@@ -283,7 +283,7 @@
   },
   "32334440390756176a5s": {
     "title": "a5s",
-    "imgUrl": "a5s-oppo.webp",
+    "imgUrl": "/static/img/mobiles/a5s-oppo.webp",
     "manufacturer": "oppo",
     "points": [
       "Smart Inverter Compressor",
@@ -297,7 +297,7 @@
   },
   "02159083505366717a92s": {
     "title": "a92s",
-    "imgUrl": "a92s-oppo.webp",
+    "imgUrl": "/static/img/mobiles/a92s-oppo.webp",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -311,7 +311,7 @@
   },
   "88115021159214448dcf0silver": {
     "title": "dcf silver",
-    "imgUrl": "dcf silver-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/dcf silver-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "Cotton Thread",
@@ -325,7 +325,7 @@
   },
   "65510800649769689f150glassy": {
     "title": "f15 glassy",
-    "imgUrl": "f15 glassy-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/f15 glassy-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -339,7 +339,7 @@
   },
   "3478025343203150510f150ocean": {
     "title": "f15 ocean",
-    "imgUrl": "f15 ocean-oppo.png",
+    "imgUrl": "/static/img/mobiles/f15 ocean-oppo.png",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -353,7 +353,7 @@
   },
   "82973398772756211o019": {
     "title": "o 19",
-    "imgUrl": "o 19-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/o 19-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -367,7 +367,7 @@
   },
   "679330244908134212old0school back": {
     "title": "old school back",
-    "imgUrl": "old school back-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/old school back-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "Smart Inverter Compressor",
@@ -381,7 +381,7 @@
   },
   "0085555891008228813punch0hole": {
     "title": "punch hole",
-    "imgUrl": "punch hole-samsung.webp",
+    "imgUrl": "/static/img/mobiles/punch hole-samsung.webp",
     "manufacturer": "samsung",
     "points": [
       "U70 (256 GB | 8GB)",
@@ -395,7 +395,7 @@
   },
   "1517666024198993714reno": {
     "title": "reno",
-    "imgUrl": "reno-oppo.jpg",
+    "imgUrl": "/static/img/mobiles/reno-oppo.jpg",
     "manufacturer": "oppo",
     "points": [
       "Cotton Thread",
@@ -409,7 +409,7 @@
   },
   "1699539494740598415t0red": {
     "title": "t red",
-    "imgUrl": "t red-oppo.webp",
+    "imgUrl": "/static/img/mobiles/t red-oppo.webp",
     "manufacturer": "oppo",
     "points": [
       "Smart Inverter Compressor",

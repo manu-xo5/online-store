@@ -7,7 +7,9 @@ const res = {
   all: [],
 };
 
-const all = JSON.parse(fs.readFileSync(path.resolve('./mobileFiles.json')));
+const all = JSON.parse(
+  fs.readFileSync(path.resolve('../../public/data/mobile-files.json'))
+);
 for (const data of all) {
   data.price = between(8, 30) * 1000;
   res[data._id] = data;

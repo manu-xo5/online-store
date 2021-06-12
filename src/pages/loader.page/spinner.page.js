@@ -1,6 +1,6 @@
-import "./spinner.styles.scss";
-import React from "react";
-import Spinner from "components/spinner";
+import './spinner.styles.scss';
+import React from 'react';
+import Spinner from 'components/spinner';
 
 export default () => (
   <main id="spinner">

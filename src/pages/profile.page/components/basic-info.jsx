@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useUser } from "../../../context/user";
-import { Input } from "../../../components/Form";
+import { useUser } from '../../../context/user';
+import { Input } from '../../../components/Form';
 
 const BasicInfoPage = () => {
   const {
@@ -12,14 +12,14 @@ const BasicInfoPage = () => {
   const [formData, setFormData] = useState({});
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    setFormData(fd => ({ ...fd, [name]: value }));
+    setFormData((fd) => ({ ...fd, [name]: value }));
   };
 
-  const handleSave = e => {
+  const handleSave = (e) => {
     e.preventDefault();
     const { displayName: firstname, ...current } = currentUser;
     dispatch({
-      type: "ProfileUpdate",
+      type: 'ProfileUpdate',
       payload: { ...current, firstname, ...formData },
     });
   };
@@ -55,7 +55,7 @@ const BasicInfoPage = () => {
           here--
         </p>
         <div>
-          <button className="primary">save</button>{" "}
+          <button className="primary">save</button>{' '}
           <button type="button" className="secondary">
             cancel
           </button>

@@ -1,5 +1,5 @@
-import React from "react";
-import "./about.styles.scss";
+import React from 'react';
+import './about.styles.scss';
 
 const About = () => (
   <>
@@ -40,7 +40,7 @@ const About = () => (
           This site is completely written using React.js & Firebase. Apis used
           in making of this project are : createContext, hooks, renderCallback,
           ReactDev Tools & Firebase SDK And Softwares are : VSCode, ChromeDev
-          Tools, PowerShell, LoremIspsum, PicsumPhotos &{" "}
+          Tools, PowerShell, LoremIspsum, PicsumPhotos &{' '}
           <strong>Stackoverflow</strong>. All purchase and transaction are
           dumy/placeholder, no library like stripe used.
           <i>- Honorable mentions Google.com</i>

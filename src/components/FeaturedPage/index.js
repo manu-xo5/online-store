@@ -1,3 +1,3 @@
-import FtItem from "./ft-item/FtItem"
+import FtItem from './ft-item/FtItem';
 
-export {FtItem}
+export { FtItem };

@@ -15,8 +15,8 @@ const Carosel = ({ list, render }) => {
   const item = list[count];
 
   return (
-    <div className='CaroselWrapper'>
-      <div className='Carosel'>
+    <div className="CaroselWrapper">
+      <div className="Carosel">
         <CaroselItem key={'-' + count} {...itemPrev} />
         <CaroselItem key={count} {...item} />
       </div>

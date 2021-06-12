@@ -6,6 +6,7 @@ import PRoute from '../PRoute/PRoute.index';
 
 import Spinner from '../../pages/loader.page';
 
+import AdminPage from '../../pages/admin.page';
 import Home from '../../pages/home.page';
 import Search from '../../pages/search.page';
 import About from '../../pages/about.page/about.page';
@@ -25,6 +26,7 @@ const Routes = () => {
         <PRoute path="/signin" component={SignIn} reverse />
         <Route path="/profile" component={Profile} />
         <Route path="/products/overview/:pid" component={ProductPage} />
+        <Route path="/admin" component={AdminPage} />
       </Switch>
     </Suspense>
   );

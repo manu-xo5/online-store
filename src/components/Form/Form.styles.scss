@@ -23,7 +23,8 @@ label.Input {
     text-transform: uppercase;
   }
 
-  input {
+  input,
+  textarea {
     padding: 0.5rem;
     display: block;
     width: 100%;
@@ -31,10 +32,14 @@ label.Input {
     border: 1px solid $pri-txt-c;
     border-radius: 5px;
     font-size: 14px;
+    font-family: 'Josefin Sans';
     outline: none;
 
     &:focus {
       box-shadow: 0 0 0 2px rgba(246, 35, 114, 0.5);
     }
+  }
+  textarea {
+    height: initial;
   }
 }

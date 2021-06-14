@@ -6,13 +6,37 @@ import Input, { FileInput } from '../../../components/Form/formik-input';
 import * as yup from 'yup';
 
 /**
+ * A helper function to wait for given ms
+ *
+ * @param {number} ms
+ * @returns {Promise.<unknown>}
+ */
+const wait = (ms) => {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(), ms);
+  });
+};
+
+const placeholderImgSrc = '/static/img/placeholder.bmp';
+const initialValues = {
+  title: '',
+  imgUrl: '',
+  manufacturer: '',
+  points: '',
+  price: '',
+};
+
+/**
  * Takes values from formik,
  *
  * transforms some values and creates a payload value,
  *
  * send request to backend using a user defined mutate fn
+ *
+ * @param {import('formik').FormikValues} values
+ * @param {import('formik').FormikHelpers.<any> | {setMessage: () => void}} helpers
  */
-const handleSubmit = (values) => {
+const handleSaveMobile = async (values, helpers) => {
   const { points, imgUrl, ...data } = values;
 
   const newMobilePayload = {
@@ -24,17 +48,17 @@ const handleSubmit = (values) => {
       .filter(Boolean),
   };
 
-  console.log(`newMobilePayload`, newMobilePayload);
+  helpers.setSubmitting(true);
+  await wait(3000);
+  const res = await mutateMobile(newMobilePayload);
 
-  mutateMobile(newMobilePayload);
-};
-
-const initialValues = {
-  title: '',
-  imgUrl: '',
-  manufacturer: '',
-  points: '',
-  price: '',
+  if (res.success) {
+    helpers.setMessage('Saved New Mobile Successfully!');
+    helpers.resetForm(initialValues);
+  } else {
+    helpers.setMessage('Failed to Saved your Mobile!');
+  }
+  return res;
 };
 
 const addProductSchema = yup.object({
@@ -80,20 +104,26 @@ const styles = {
     height: '100%',
     objectFit: 'contain',
   },
+  message: {
+    paddingLeft: '1rem',
+  },
 };
 
 const ProductMasterPage = () => {
   const previewRef = useRef(null);
   const [previewImg, setPreviewImg] = useState(null);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
-    if (!(previewRef.current && previewImg)) return;
+    if (!previewRef.current) return;
 
-    const localUrl = URL.createObjectURL(previewImg);
-
-    previewRef.current.src = localUrl;
-
-    return () => URL.revokeObjectURL(previewImg);
+    if (previewImg) {
+      const localUrl = URL.createObjectURL(previewImg);
+      previewRef.current.src = localUrl;
+      return () => URL.revokeObjectURL(previewImg);
+    } else {
+      previewRef.current.src = placeholderImgSrc;
+    }
   }, [previewImg]);
 
   return (
@@ -104,40 +134,51 @@ const ProductMasterPage = () => {
           initialValues={initialValues}
           validateOnBlur={true}
           validationSchema={addProductSchema}
-          onSubmit={handleSubmit}
+          onSubmit={(values, helpers) =>
+            handleSaveMobile(values, { ...helpers, setMessage })
+          }
+          onReset={() => setPreviewImg(null)}
         >
-          <Form style={styles.form}>
-            <Input label="Product Name" name="title" />
+          {(formik) => (
+            <Form style={styles.form}>
+              <Input label="Product Name" name="title" />
 
-            <FileInput
-              label="Thumbnail"
-              name="imgUrl"
-              accept="image/*"
-              onChange={(ev) => setPreviewImg(ev.currentTarget.files[0])}
-            />
-            <div style={styles.previewImgWrapper}>
-              <img
-                style={styles.previewImg}
-                ref={previewRef}
-                alt="product preview"
+              <FileInput
+                label="Thumbnail"
+                name="imgUrl"
+                accept="image/*"
+                onChange={(ev) => setPreviewImg(ev.currentTarget.files[0])}
               />
-            </div>
 
-            <Input label="Manufacturer" name="manufacturer" />
+              {/* Preview image of product item */}
+              <div style={styles.previewImgWrapper}>
+                <img
+                  style={styles.previewImg}
+                  ref={previewRef}
+                  alt="product preview"
+                />
+              </div>
 
-            <Input
-              style={styles.formTextArea}
-              label="Features (seperate in lines or by comma)"
-              name="points"
-              as="textarea"
-              rows="5"
-            />
-            <Input label="Price in Rupees" name="price" />
+              <Input label="Manufacturer" name="manufacturer" />
 
-            <div>
-              <Button.Primary type="submit">Save</Button.Primary>
-            </div>
-          </Form>
+              <Input
+                style={styles.formTextArea}
+                label="Features (seperate in lines or by comma)"
+                name="points"
+                as="textarea"
+                rows="5"
+              />
+              <Input label="Price in Rupees" name="price" />
+
+              <div>
+                <Button.Primary type="submit" isLoading={formik.isSubmitting}>
+                  Save
+                </Button.Primary>
+
+                {message ? <span style={styles.message}>{message}</span> : null}
+              </div>
+            </Form>
+          )}
         </Formik>
       </div>
     </main>

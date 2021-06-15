@@ -24,9 +24,9 @@ const Routes = () => {
         <Route path="/search/:query" component={Search} />
         <Route path="/featured" component={Featured} />
         <PRoute path="/signin" component={SignIn} reverse />
-        <Route path="/profile" component={Profile} />
+        <PRoute path="/profile" component={Profile} />
         <Route path="/products/overview/:pid" component={ProductPage} />
-        <Route path="/admin" component={AdminPage} />
+        <PRoute path="/admin" component={AdminPage} />
       </Switch>
     </Suspense>
   );

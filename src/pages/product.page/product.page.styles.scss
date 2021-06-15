@@ -113,4 +113,13 @@ main#productpage {
   & > * {
     flex: 1;
   }
+
+  .delivery-time {
+    margin-top: 2rem;
+    // border: solid;
+  }
+
+  .delivery-time__head {
+    color: var(--primary);
+  }
 }

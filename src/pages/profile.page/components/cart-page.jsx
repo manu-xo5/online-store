@@ -2,7 +2,7 @@ import React from 'react';
 import { List } from 'components/utilities';
 import { Button } from 'components/Form';
 import { useCart } from '../../../context/cart';
-import { useUser, addOrders } from 'context/user';
+import { useUser, addOrders } from '../../../context/user';
 
 export default () => {
   const { cart, removeFromCart, emptyCart } = useCart();
@@ -18,6 +18,10 @@ export default () => {
       ...cartItem,
       orderedOn: new Date().toISOString(),
     }));
+    if (!currentUser.displayName) {
+      console.log('Sign In requried to place order');
+      return;
+    }
 
     if (totalCost > currentUser.balance) {
       console.log('Not Enough Balance');

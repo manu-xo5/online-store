@@ -5,30 +5,33 @@ import { useHistory } from 'react-router-dom';
 import Form, { Button } from '../../components/Form';
 import useAsync from '../../hooks/useAsync';
 import { fetchMobile } from '../../api-functions/mobileFiles';
+import { useUser } from 'context/user';
 
-const randBgc = () => {
-  const ran = () => Math.floor(Math.random() * 256);
-  return {
-    backgroundColor: `rgb(${ran()},${ran()},${ran()})`,
-  };
-};
-const colors = [randBgc(), randBgc(), randBgc()];
-const stars = (Math.random() + 4).toFixed(1);
-const reviews = (Math.random() + 500).toFixed();
+const between = (min, max) => Math.round(min + Math.random() * (max - min));
+const randomBgc = () =>
+  `rgb(${between(0, 256)},${between(0, 256)},${between(0, 256)})`;
 
-const ProductPage = ({ match }) => {
+const stars = between(2, 5) + between(2, 9) * 0.2;
+const reviews = between(300, 500);
+const deliveryTime = `${between(1, 3)}-${between(4, 5)}`;
+
+const ProductPage = ({ match, location }) => {
   const history = useHistory();
+  const { currentUser } = useUser().userState;
   const { addToCart, cart } = useCartActions();
   const [mobile, runMobile] = useAsync();
   const product = mobile.data;
 
   const { pid } = match.params;
   const inCart = cart.some((item) => item.pid === pid);
+  const utm = new URLSearchParams(location.search).get('utm');
 
   function handleAddToCart(ev) {
     ev.preventDefault();
     const specs = Object.fromEntries(new FormData(ev.currentTarget));
-    addToCart({ pid, ...specs, product });
+    if (currentUser.displayName) {
+      addToCart({ pid, ...specs, product });
+    }
   }
 
   useEffect(() => {
@@ -44,7 +47,12 @@ const ProductPage = ({ match }) => {
           </div>
 
           <div className="body">
-            <button className="back"> Back to Search Results </button>
+            {utm === 'search' ? (
+              <button onClick={() => history.goBack()} className="back">
+                {' '}
+                Back to Search Results{' '}
+              </button>
+            ) : null}
             <div className="cat">
               <p>Category `{product.manufacturer}`</p>
               <h1> {product.name || product.title} </h1>
@@ -85,7 +93,9 @@ const ProductPage = ({ match }) => {
               <div className="field-group">
                 <p className="field-name"> Color </p>
                 <Form.Input
-                  label={<ColorButton style={colors[0]} />}
+                  label={
+                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                  }
                   type="radio"
                   name="color"
                   value="red"
@@ -93,14 +103,18 @@ const ProductPage = ({ match }) => {
                   defaultChecked
                 />
                 <Form.Input
-                  label={<ColorButton style={colors[1]} />}
+                  label={
+                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                  }
                   type="radio"
                   name="color"
                   value="yellow"
                   className="colorinput"
                 />
                 <Form.Input
-                  label={<ColorButton style={colors[2]} />}
+                  label={
+                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                  }
                   type="radio"
                   value="skyblue"
                   name="color"
@@ -121,6 +135,12 @@ const ProductPage = ({ match }) => {
                 <Form.Input label="Lg" value="lg" type="radio" name="size" />
                 <Form.Input label="Xl" value="xl" type="radio" name="size" />
               </div>
+
+              <p className="delivery-time">
+                <span className="delivery-time__head">Delivery Time:</span>{' '}
+                {deliveryTime} Business days
+              </p>
+
               {inCart ? (
                 <>
                   <span>Added!</span>

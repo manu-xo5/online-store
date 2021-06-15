@@ -1,4 +1,3 @@
-import { useUser } from 'context/user';
 import * as React from 'react';
 
 const CartContext = React.createContext([]);

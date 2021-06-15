@@ -55,8 +55,7 @@ const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
         <img
           style={styles.Img}
           alt="place holder for product card"
-          // src={`//picsum.photos/250?random=${id}`}
-          src={`/static/img/mobiles/${imgUrl}`}
+          src={imgUrl}
         />
       </div>
       <div style={styles.Body}>
@@ -74,7 +73,7 @@ const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
           {isInCart ? <p>In Cart!</p> : null}
 
           <Button.Secondary
-            onClick={() => history.push(`/products/overview/${_id}`)}
+            onClick={() => history.push(`/products/overview/${_id}?utm=search`)}
           >
             Overview
           </Button.Secondary>

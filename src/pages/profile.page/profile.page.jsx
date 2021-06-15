@@ -72,6 +72,9 @@ const Sidebar = () => {
           <Link to="/profile/basicinfo">Basic</Link>
         </li>
         <li>
+          <Link to="/profile/cart">Cart</Link>
+        </li>
+        <li>
           <Link to="/profile/redeem">Redeem</Link>
         </li>
         <li>

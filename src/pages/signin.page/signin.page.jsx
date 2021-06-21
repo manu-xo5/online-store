@@ -2,7 +2,8 @@ import './signin.styles.scss';
 import React from 'react';
 import { Button, Input } from '../../components/Form';
 import { useUser } from 'context/user';
-import Avatar from 'assets/avatar.jpg';
+
+const Avatar = '/static/img/avatar.png';
 
 const SignIn = () => {
   const { dispatch } = useUser();

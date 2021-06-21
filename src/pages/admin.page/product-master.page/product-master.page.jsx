@@ -4,18 +4,7 @@ import { mutateMobile } from '../../../api-functions/mobileFiles';
 import { Formik, Form } from 'formik';
 import Input, { FileInput } from '../../../components/Form/formik-input';
 import * as yup from 'yup';
-
-/**
- * A helper function to wait for given ms
- *
- * @param {number} ms
- * @returns {Promise.<unknown>}
- */
-const wait = (ms) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(), ms);
-  });
-};
+import { wait } from 'utils';
 
 const placeholderImgSrc = '/static/img/placeholder.bmp';
 const initialValues = {

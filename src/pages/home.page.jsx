@@ -4,6 +4,7 @@ import CatCard from '../components/LandingPage/cat-card';
 import { Link } from 'react-router-dom';
 
 import Carosel from '../components/carosel';
+import CaroselItem from '../components/carosel/carosel-item/carosel-item';
 import { List } from '../components/utilities';
 import { FtItem } from '../components/FeaturedPage';
 import useAsync from '../hooks/useAsync';
@@ -21,9 +22,24 @@ const styles = {
     borderTop: '1px solid #eee',
   },
 };
+
+function bound(value, maxLimit) {
+  return (value + maxLimit) % maxLimit;
+}
+
 const Home = () => {
   const [categories, runCategories] = useAsync();
   const [mobileFiles, runMobileFiles] = useAsync();
+  const [count, incrementCount] = React.useReducer((count) => count + 1, 0);
+
+  const mobileFilesLength = mobileFiles.data?.all?.length || 0;
+  const itemPrev = mobileFiles.data?.all?.[bound(count - 1, mobileFilesLength)];
+  const item = mobileFiles.data?.all?.[bound(count, mobileFilesLength)];
+
+  React.useEffect(() => {
+    const _id = setInterval(incrementCount, 5000);
+    return () => clearInterval(_id);
+  }, []);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -35,14 +51,15 @@ const Home = () => {
     <>
       <div className="fadein">
         {mobileFiles.status === 'success' ? (
-          <Carosel list={mobileFiles.data.all.slice(0, 4)} />
+          <Carosel>
+            <CaroselItem key={'-' + count} {...itemPrev} />
+            <CaroselItem key={count} {...item} />
+          </Carosel>
         ) : mobileFiles.status === 'loading' ? (
           <p>Loading Fresh Items</p>
         ) : mobileFiles.status === 'error' ? (
           <p>{mobileFiles.error}</p>
         ) : null}
-
-        <section id="featured"></section>
 
         {mobileFiles.status === 'success' ? (
           <section id="popular">

@@ -1,14 +1,14 @@
 import React from 'react';
-import AvatarDefault from '../../assets/avatar.jpg';
 import { Switch, Route, Link, Redirect } from 'react-router-dom';
 import './profile.styles.scss';
 
 import BasicInfoPage from './components/basic-info';
 import CartPage from './components/cart-page';
-import OrdersPage from './orders.page';
 import { Input, Button } from '../../components/Form';
 import { useUser } from '../../context/user';
 import DeliveryStatusPage from './orders.page/delivery-status.page/delivery-status.page';
+
+const AvatarDefault = '/static/img/avatar.png';
 
 const RedeemPage = () => (
   <main id="redeem">
@@ -47,7 +47,7 @@ const ProfilePage = (props) => {
             path="/profile/orders/delivery-status"
             component={DeliveryStatusPage}
           />
-          <Route path="/profile/orders" component={OrdersPage} />
+          {/* <Route path="/profile/orders" component={OrdersPage} /> */}
           <Route path="/profile/redeem" component={RedeemPage} />
           <Route
             path="/profile/signout"

@@ -3,4 +3,6 @@ $pri-bg: #282828;
 $pri-hd-c: #111;
 :root {
   --primary: #f51167;
+  --pri-bg: $pri-bg;
+  --pri-hd-c: $pri-hd-c;
 }

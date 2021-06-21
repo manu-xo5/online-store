@@ -11,6 +11,7 @@ const between = (min, max) => Math.round(min + Math.random() * (max - min));
 const randomBgc = () =>
   `rgb(${between(0, 256)},${between(0, 256)},${between(0, 256)})`;
 
+const backgroundColors = [randomBgc(), randomBgc(), randomBgc()];
 const stars = between(2, 5) + between(2, 9) * 0.2;
 const reviews = between(300, 500);
 const deliveryTime = `${between(1, 3)}-${between(4, 5)}`;
@@ -94,7 +95,9 @@ const ProductPage = ({ match, location }) => {
                 <p className="field-name"> Color </p>
                 <Form.Input
                   label={
-                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                    <ColorButton
+                      style={{ backgroundColor: backgroundColors[0] }}
+                    />
                   }
                   type="radio"
                   name="color"
@@ -104,7 +107,9 @@ const ProductPage = ({ match, location }) => {
                 />
                 <Form.Input
                   label={
-                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                    <ColorButton
+                      style={{ backgroundColor: backgroundColors[1] }}
+                    />
                   }
                   type="radio"
                   name="color"
@@ -113,7 +118,9 @@ const ProductPage = ({ match, location }) => {
                 />
                 <Form.Input
                   label={
-                    <ColorButton style={{ backgroundColor: randomBgc() }} />
+                    <ColorButton
+                      style={{ backgroundColor: backgroundColors[2] }}
+                    />
                   }
                   type="radio"
                   value="skyblue"

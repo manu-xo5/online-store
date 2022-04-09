@@ -66,8 +66,8 @@ const ProductPage = ({ match, location }) => {
               <span style={{ color: 'var(--primary)' }}>{product.price}</span>
             </h2>
             <form onSubmit={handleAddToCart}>
+              <p className="field-name"> Select Quality </p>
               <div className="field-group">
-                <p className="field-name"> Select Quality </p>
                 <Form.Input
                   labelClass="quality"
                   label="Basic"
@@ -91,12 +91,16 @@ const ProductPage = ({ match, location }) => {
                   type="radio"
                 />
               </div>
+
+              <p className="field-name"> Color </p>
               <div className="field-group">
-                <p className="field-name"> Color </p>
                 <Form.Input
                   label={
                     <ColorButton
-                      style={{ backgroundColor: backgroundColors[0] }}
+                      style={{
+                        display: 'inline-block',
+                        backgroundColor: backgroundColors[0],
+                      }}
                     />
                   }
                   type="radio"

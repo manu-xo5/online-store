@@ -51,7 +51,8 @@ main#productpage {
       display: none;
 
       &:checked + span span {
-        box-shadow: 0 0 0 1px #fff, 0 0 0 3px #333;
+        outline: 0.1rem solid red;
+        outline-offset: 0.1rem;
       }
     }
 
@@ -69,18 +70,23 @@ main#productpage {
       }
     }
 
-    .field-group {
+    .field-name {
       margin: 1rem 0;
     }
 
-    .field-name {
+    .field-group {
       margin-bottom: 0.75rem;
+      display: flex;
     }
 
     .quality {
+      display: block;
       margin: 0;
-      margin-bottom: 1rem;
+
       span {
+        display: inline-block;
+        text-align: center;
+        min-width: 8.375rem;
         padding: 0.4rem 2rem 0.25rem;
         box-shadow: 0 0 0px 1px #555;
       }

@@ -4,7 +4,7 @@ import { Button } from '../Form';
 
 const styles = {
   Container: {
-    marginBottom: '2rem',
+    margin: '2rem',
     padding: '2rem',
     display: 'flex',
     gap: '3rem',
@@ -15,7 +15,7 @@ const styles = {
     alignSelf: 'center',
     minHeight: 250,
     minWidth: 250,
-    boxShadow: '0 0 3px #555',
+    // boxShadow: '0 0 3px #555',
     borderRadius: 3,
     display: 'flex',
     justifyContent: 'center',

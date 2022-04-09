@@ -24,15 +24,16 @@ const FormInput = ({
     inline || rest.type === 'checkbox' || rest.type === 'radio';
   // works when inline
   const shouldShowLabel = inline && !label ? false : true;
-
+  const isToggleControl = rest.type === 'checkbox' || rest.type === 'radio';
   return (
     <label
       style={labelStyle}
       className={`Input ${shouldInline ? 'inline' : ''} ${labelClass}`}
       htmlFor={id}
     >
-      {shouldShowLabel ? <span>{label}</span> : null}
+      {!isToggleControl ? <span>{label}</span> : null}
       <As name={label} id={id} {...rest} />
+      {isToggleControl ? <span>{label}</span> : null}
     </label>
   );
 };

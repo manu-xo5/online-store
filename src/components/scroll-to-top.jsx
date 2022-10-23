@@ -1,16 +1,11 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router';
+import { useLocation } from 'react-router-dom';
 
 const ScrollToTop = ({ children }) => {
-  const history = useHistory();
+  const history = useLocation();
 
   useEffect(() => {
-    history.listen((_, eventType) => {
-      if (eventType === 'PUSH') {
-        console.log('scrolling back');
-        window.scrollTo(0, 0);
-      }
-    });
+    window.scrollTo(0, 0);
   }, [history]);
 
   return children;

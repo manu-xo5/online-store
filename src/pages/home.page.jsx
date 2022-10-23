@@ -33,8 +33,11 @@ const Home = () => {
   const [count, incrementCount] = React.useReducer((count) => count + 1, 0);
 
   const mobileFilesLength = mobileFiles.data?.all?.length || 0;
-  const itemPrev = mobileFiles.data?.all?.[bound(count - 1, mobileFilesLength)];
-  const item = mobileFiles.data?.all?.[bound(count, mobileFilesLength)];
+  // const itemPrev = mobileFiles.data?.all?.[bound(count - 1, mobileFilesLength)];
+  // const item = mobileFiles.data?.all?.[bound(count, mobileFilesLength)];
+
+  const item = mobileFiles.data?.all[1];
+  const itemPrev = mobileFiles.data?.all[0];
 
   React.useEffect(() => {
     const _id = setInterval(incrementCount, 5000);
@@ -52,8 +55,8 @@ const Home = () => {
       <div className="fadein">
         {mobileFiles.status === 'success' ? (
           <Carosel>
-            <CaroselItem key={'-' + count} {...itemPrev} />
-            <CaroselItem key={count} {...item} />
+            <CaroselItem xkey={'-' + count} {...itemPrev} />
+            <CaroselItem xkey={count} {...item} />
           </Carosel>
         ) : mobileFiles.status === 'loading' ? (
           <p>Loading Fresh Items</p>

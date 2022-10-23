@@ -1,10 +1,11 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Form';
 
 const SearchBox = ({ history }) => {
+  const navigate = useNavigate()
   const handleSearch = (ev) => {
-    if (ev.key === 'Enter') history.push(`/search/${ev.target.value}`);
+    if (ev.key === 'Enter') navigate(`/search/${ev.target.value}`);
   };
 
   return (
@@ -17,4 +18,4 @@ const SearchBox = ({ history }) => {
   );
 };
 
-export default withRouter(SearchBox);
+export default SearchBox;

@@ -1,8 +1,8 @@
 import './product.page.styles.scss';
 import React, { useEffect } from 'react';
 import { useCart as useCartActions } from '../../context/cart';
-import { useHistory } from 'react-router-dom';
-import Form, { Button } from '../../components/Form';
+import { Form, useNavigate, useParams, useLocation } from 'react-router-dom';
+import MyForm, { Button } from '../../components/Form';
 import useAsync from '../../hooks/useAsync';
 import { fetchMobile } from '../../api-functions/mobileFiles';
 import { useUser } from 'context/user';
@@ -16,14 +16,19 @@ const stars = between(2, 5) + between(2, 9) * 0.2;
 const reviews = between(300, 500);
 const deliveryTime = `${between(1, 3)}-${between(4, 5)}`;
 
-const ProductPage = ({ match, location }) => {
-  const history = useHistory();
+export function productPageAction(data) {
+  console.log({data})
+}
+
+const ProductPage = () => {
+  const navigate = useNavigate();
+  const { pid } = useParams();
+  const location = useLocation();
   const { currentUser } = useUser().userState;
   const { addToCart, cart } = useCartActions();
   const [mobile, runMobile] = useAsync();
   const product = mobile.data;
 
-  const { pid } = match.params;
   const inCart = cart.some((item) => item.pid === pid);
   const utm = new URLSearchParams(location.search).get('utm');
 
@@ -49,7 +54,7 @@ const ProductPage = ({ match, location }) => {
 
           <div className="body">
             {utm === 'search' ? (
-              <button onClick={() => history.goBack()} className="back">
+              <button onClick={() => navigate("..")} className="back">
                 {' '}
                 Back to Search Results{' '}
               </button>
@@ -65,17 +70,18 @@ const ProductPage = ({ match, location }) => {
               Price: Rs.
               <span style={{ color: 'var(--primary)' }}>{product.price}</span>
             </h2>
-            <form onSubmit={handleAddToCart}>
+
+            <Form method="POST" xonSubmit={handleAddToCart}>
               <p className="field-name"> Select Quality </p>
               <div className="field-group">
-                <Form.Input
+                <MyForm.Input
                   labelClass="quality"
                   label="Basic"
                   value="basic"
                   name="quality"
                   type="radio"
                 />
-                <Form.Input
+                <MyForm.Input
                   labelClass="quality"
                   label="Golden"
                   value="golden"
@@ -83,7 +89,7 @@ const ProductPage = ({ match, location }) => {
                   type="radio"
                   defaultChecked
                 />
-                <Form.Input
+                <MyForm.Input
                   labelClass="quality"
                   label="Platinum"
                   value="platinum"
@@ -94,7 +100,7 @@ const ProductPage = ({ match, location }) => {
 
               <p className="field-name"> Color </p>
               <div className="field-group">
-                <Form.Input
+                <MyForm.Input
                   label={
                     <ColorButton
                       style={{
@@ -109,7 +115,7 @@ const ProductPage = ({ match, location }) => {
                   className="colorinput"
                   defaultChecked
                 />
-                <Form.Input
+                <MyForm.Input
                   label={
                     <ColorButton
                       style={{ backgroundColor: backgroundColors[1] }}
@@ -120,7 +126,7 @@ const ProductPage = ({ match, location }) => {
                   value="yellow"
                   className="colorinput"
                 />
-                <Form.Input
+                <MyForm.Input
                   label={
                     <ColorButton
                       style={{ backgroundColor: backgroundColors[2] }}
@@ -132,19 +138,20 @@ const ProductPage = ({ match, location }) => {
                   className="colorinput"
                 />
               </div>
+
+              <p className="field-name"> Size </p>
               <div className="field-group">
-                <p className="field-name"> Size </p>
-                <Form.Input
+                <MyForm.Input
                   label="Xs"
                   value="xs"
                   type="radio"
                   name="size"
                   defaultChecked
                 />
-                <Form.Input label="Sm" value="sm" type="radio" name="size" />
-                <Form.Input label="Md" value="md" type="radio" name="size" />
-                <Form.Input label="Lg" value="lg" type="radio" name="size" />
-                <Form.Input label="Xl" value="xl" type="radio" name="size" />
+                <MyForm.Input label="Sm" value="sm" type="radio" name="size" />
+                <MyForm.Input label="Md" value="md" type="radio" name="size" />
+                <MyForm.Input label="Lg" value="lg" type="radio" name="size" />
+                <MyForm.Input label="Xl" value="xl" type="radio" name="size" />
               </div>
 
               <p className="delivery-time">
@@ -157,7 +164,7 @@ const ProductPage = ({ match, location }) => {
                   <span>Added!</span>
                   <Button.Secondary
                     style={{ marginLeft: 10 }}
-                    onClick={() => history.push('/profile/cart')}
+                    onClick={() => navigate('/profile/cart')}
                   >
                     Continue to Cart
                   </Button.Secondary>
@@ -165,7 +172,7 @@ const ProductPage = ({ match, location }) => {
               ) : (
                 <Button.Primary type="submit">Add to Cart</Button.Primary>
               )}
-            </form>
+            </Form>
           </div>
         </>
       ) : mobile.status === 'loading' ? (

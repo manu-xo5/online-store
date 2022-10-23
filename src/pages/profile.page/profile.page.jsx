@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route, Link, Redirect } from 'react-router-dom';
+import { Routes, Route, Link, Redirect, Outlet } from 'react-router-dom';
 import './profile.styles.scss';
 
 import BasicInfoPage from './components/basic-info';
@@ -7,10 +7,11 @@ import CartPage from './components/cart-page';
 import { Input, Button } from '../../components/Form';
 import { useUser } from '../../context/user';
 import DeliveryStatusPage from './orders.page/delivery-status.page/delivery-status.page';
+import { useNavigate } from 'react-router-dom';
 
 const AvatarDefault = '/static/img/avatar.png';
 
-const RedeemPage = () => (
+export const RedeemPage = () => (
   <main id="redeem">
     <p>
       Um is that it has a more-or-less normal distribution of letters, as
@@ -27,6 +28,7 @@ const RedeemPage = () => (
 
 const ProfilePage = (props) => {
   const { currentUser } = useUser().userState;
+  const navigate = useNavigate();
 
   return (
     <main id="profile">
@@ -40,25 +42,8 @@ const ProfilePage = (props) => {
         <Sidebar />
       </div>
       <section className="container">
-        <Switch>
-          <Route path="/profile/basicinfo" component={BasicInfoPage} />
-          <Route path="/profile/cart" component={CartPage} />
-          <Route
-            path="/profile/orders/delivery-status"
-            component={DeliveryStatusPage}
-          />
-          {/* <Route path="/profile/orders" component={OrdersPage} /> */}
-          <Route path="/profile/redeem" component={RedeemPage} />
-          <Route
-            path="/profile/signout"
-            render={() => {
-              return <Redirect to="/" />;
-            }}
-          />
-          <Route path="*">
-            <Redirect to="/profile/basicinfo" />
-          </Route>
-        </Switch>
+        <Outlet />
+        {/* <Route path="/profile/orders" component={OrdersPage} /> */}
       </section>
     </main>
   );

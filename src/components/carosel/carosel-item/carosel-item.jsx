@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Button } from '../../Form';
 import { List } from '../../utilities/utilities';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import './carosel-item.scss';
 const CaroselItem = ({ style, title, imgUrl, manufacturer, points, _id }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <article className="CaroselItem">
@@ -25,18 +25,8 @@ const CaroselItem = ({ style, title, imgUrl, manufacturer, points, _id }) => {
           )}
         />
         <Button.Primary
-          style={{
-            marginTop: '3rem',
-            padding: '1rem 2rem',
-            color: 'var(--primary)',
-            fontSize: 16,
-            fontWeight: 'bold',
-            textTransform: 'uppercase',
-            borderRadius: 0,
-            border: '3px solid var(--primary)',
-            backgroundColor: 'transparent',
-          }}
-          onClick={() => history.push(`/products/overview/${_id}`)}
+          className="CaroselItem__btn"
+          onClick={() => navigate(`/products/overview/${_id}`)}
         >
           Buy now
         </Button.Primary>

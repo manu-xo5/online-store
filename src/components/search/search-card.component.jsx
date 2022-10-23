@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../Form';
 
 const styles = {
@@ -47,7 +47,7 @@ const styles = {
 };
 
 const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <div style={styles.Container}>
@@ -73,7 +73,7 @@ const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
           {isInCart ? <p>In Cart!</p> : null}
 
           <Button.Secondary
-            onClick={() => history.push(`/products/overview/${_id}?utm=search`)}
+            onClick={() => navigate(`/products/overview/${_id}?utm=search`)}
           >
             Overview
           </Button.Secondary>

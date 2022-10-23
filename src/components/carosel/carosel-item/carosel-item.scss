@@ -1,3 +1,4 @@
+@import '../../../variables';
 .CaroselItem {
   display: inline-flex;
   justify-content: space-evenly;
@@ -8,24 +9,6 @@
   overflow: hidden;
   animation: slideLeft 400ms ease forwards;
 
-  &__title {
-    text-transform: capitalize;
-    font-size: 2rem;
-    line-height: 2;
-  }
-
-  &__manufacturer {
-    text-transform: uppercase;
-    font-size: 2rem;
-    line-height: 2;
-  }
-
-  &__img {
-    height: 70%;
-    display: block;
-    object-fit: contain;
-  }
-
   &__specs-li {
     padding: 0.75rem 1rem 0.75rem;
     display: block;
@@ -34,6 +17,60 @@
     & + & {
       border-top: 1px solid;
     }
+  }
+}
+
+.CaroselItem__title {
+  text-transform: capitalize;
+  font-size: 2rem;
+  line-height: 2;
+}
+
+.CaroselItem__manufacturer {
+  text-transform: uppercase;
+  font-size: 2rem;
+  line-height: 2;
+}
+
+.CaroselItem__img {
+  height: 70%;
+  display: block;
+  object-fit: contain;
+}
+
+.CaroselItem__btn {
+  margin-top: 3rem;
+  padding: 1rem 2rem !important;
+  color: var(--primary) !important;
+  font-size: 16;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 0 !important;
+  border: 3px solid var(--primary) !important;
+  background-color: transparent !important;
+  transition: color 250ms ease-in;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    transform: skew(-5deg);
+
+    transition: background-color 250ms ease-in;
+  }
+}
+
+.CaroselItem__btn:hover {
+  position: relative;
+  color: white !important;
+
+  transition-timing-function: ease-out;
+
+  &::after {
+    content: '';
+    background-color: $pri-txt-c;
+    transition-timing-function: ease-out;
   }
 }
 

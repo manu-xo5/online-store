@@ -7,7 +7,7 @@ import { FiShoppingCart } from 'react-icons/fi';
 import { ALink } from '../utilities/utilities';
 import SeacrhInput from '../search/search-box.component';
 
-const AvatarImg = '/static/img/avatar.png';
+const AvatarImg = '/static/img/avatar.jpg';
 
 const User = () => {
   const { userState } = useUser();

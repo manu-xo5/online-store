@@ -1,11 +1,11 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const FtItem = ({ src, title, item }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function goToProductPage() {
-    history.push(`/products/overview/${item._id}`, { item });
+    navigate(`/products/overview/${item._id}`, { item });
   }
   return (
     <div className="FtItem" onClick={goToProductPage}>

@@ -1,11 +1,11 @@
 import { useUser, emptyOrders } from 'context/user';
 import { Button } from '../../../components/Form';
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export default () => {
   const { userState, dispatch } = useUser();
-  const history = useHistory();
+  const navigate = useNavigate()
 
   const orders = userState?.orders || null;
 
@@ -51,7 +51,7 @@ export default () => {
               Clear History
             </Button.Primary>
             <Button.Secondary
-              onClick={() => history.push('/profile/orders/delivery-status')}
+              onClick={() => navigate('/profile/orders/delivery-status')}
             >
               Delivery Status
             </Button.Secondary>

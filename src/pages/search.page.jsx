@@ -5,6 +5,7 @@ import useAsync from '../hooks/useAsync';
 import { fetchMobileFiles } from '../api-functions/mobileFiles';
 import SearchFilterSidebar from '../components/search-filter-bar';
 import { useActionReducer } from '../hooks/useActionReducer';
+import { useParams } from 'react-router-dom';
 
 const filterActions = {
   sortBy: (value, prev) => {
@@ -73,8 +74,8 @@ const filterBrand = (brand, brands) => {
   return brands.includes(brand);
 };
 
-const SearchPage = ({ match }) => {
-  const query = match.params.query;
+const SearchPage = () => {
+  const query = useParams().query;
   const [mobileFiles, runMobileFiles] = useAsync();
   const { cart } = useCartAction();
   const { state: filters, actions } = useActionReducer(

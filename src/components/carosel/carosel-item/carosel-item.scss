@@ -1,16 +1,23 @@
 @import '../../../variables';
 .CaroselItem {
-  display: inline-flex;
-  justify-content: space-evenly;
-  align-items: center;
   width: 100%;
-  flex-shrink: 0;
-  white-space: pre;
   overflow: hidden;
+  flex-shrink: 0;
   animation: slideLeft 400ms ease forwards;
+
+  display: inline-grid;
+  grid-template-areas: 'img title' 'img specs';
+
+  @media (min-width: 768px) {
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    white-space: pre;
+  }
 
   &__specs-li {
     padding: 0.75rem 1rem 0.75rem;
+    margin-right: 2rem;
     display: block;
     list-style: none;
     font-size: 1.15rem;
@@ -21,9 +28,14 @@
 }
 
 .CaroselItem__title {
+  grid-area: title;
   text-transform: capitalize;
   font-size: 2rem;
   line-height: 2;
+}
+
+.CaroselItem__specs-div {
+  grid-area: specs;
 }
 
 .CaroselItem__manufacturer {
@@ -36,6 +48,8 @@
   height: 70%;
   display: block;
   object-fit: contain;
+  grid-area: img;
+  place-self: center;
 }
 
 .CaroselItem__btn {

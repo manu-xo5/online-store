@@ -9,11 +9,15 @@ import Spinner from '../../pages/loader.page';
 
 import AdminPage from '../../pages/admin.page';
 import Home, { HomeErrorBoundary, homeLoader } from '../../pages/home.page';
-import Search from '../../pages/search.page';
+import Search, { searchLoader } from '../../pages/search.page';
 import About from '../../pages/about.page/about.page';
 import ScrollToTop from 'components/scroll-to-top';
 import { useUser } from 'context/user';
-import { productAction, productLoader, productPageAction } from 'pages/product.page/product.page';
+import {
+  productAction,
+  productLoader,
+  productPageAction,
+} from 'pages/product.page/product.page';
 import ProductMasterPage from 'pages/admin.page/product-master.page';
 import BasicInfoPage from 'pages/profile.page/components/basic-info';
 import CartPage from 'pages/profile.page/components/cart-page';
@@ -45,7 +49,7 @@ const router = createBrowserRouter([
       },
 
       { path: 'about', element: <About /> },
-      { path: 'search/:query', element: <Search /> },
+      { path: 'search/:query', element: <Search />, loader: searchLoader },
       { path: 'featured', element: <Featured /> },
       { path: 'signin', element: <SignIn /> },
       {
@@ -60,7 +64,7 @@ const router = createBrowserRouter([
           { path: 'cart', element: <CartPage /> },
           {
             path: 'orders',
-            element: <OrdersPage />
+            element: <OrdersPage />,
           },
           {
             path: 'orders/delivery-status',
@@ -73,7 +77,7 @@ const router = createBrowserRouter([
       {
         path: 'products/overview/:pid',
         element: <ProductPage />,
-        loader: productLoader
+        loader: productLoader,
       },
       {
         path: 'admin/product-master',

@@ -1,21 +1,17 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from '../Form';
+import { Link, useNavigate } from 'react-router-dom';
+import './search.scss';
 
+/** @type {Object.<string, React.CSSProperties>} */
 const styles = {
   Container: {
-    margin: '2rem',
-    padding: '2rem',
+    marginInline: '2rem',
+    padding: '0.5rem',
     display: 'flex',
-    gap: '3rem',
-    border: '1px solid #aaa',
-    borderRadius: 5,
+    gap: '1rem',
   },
   Thumbnail: {
     alignSelf: 'center',
-    minHeight: 250,
-    minWidth: 250,
-    // boxShadow: '0 0 3px #555',
     borderRadius: 3,
     display: 'flex',
     justifyContent: 'center',
@@ -31,13 +27,31 @@ const styles = {
   },
   Body: {
     padding: '.5rem',
+    paddingTop: '1rem',
     display: 'inline-flex',
+    gap: '0.2rem',
     flexDirection: 'column',
-    justifyContent: 'space-between',
     color: '#555',
   },
   Title: {
     color: '#222',
+    textTransform: 'capitalize',
+    fontSize: '28px',
+    lineHeight: '28px',
+  },
+  para: {
+    fontSize: '13px',
+  },
+  price: {
+    marginTop: '0.5rem',
+    display: 'inline-flex',
+    alignItems: 'center',
+    border: '1px solid var(--primary)',
+    borderRadius: 5,
+    fontSize: '13px',
+    lineHeight: '13px',
+    height: '2em',
+    padding: '0 .5em',
   },
   Actions: {
     display: 'flex',
@@ -50,7 +64,11 @@ const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
   const navigate = useNavigate();
 
   return (
-    <div style={styles.Container}>
+    <Link
+      style={styles.Container}
+      className="search-container"
+      to={`/products/overview/${_id}?utm=search`}
+    >
       <div style={styles.Thumbnail}>
         <img
           style={styles.Img}
@@ -58,28 +76,18 @@ const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
           src={imgUrl}
         />
       </div>
-      <div style={styles.Body}>
-        <h2 style={styles.Title}>{title}</h2>
-        <strong>Price - Rs.{price}</strong>
-        <br />
-        <p>
-          <strong>Review :</strong>
-          <br />
-          {desc}
-        </p>
-        <br />
-        <small>Options - {points.join(', ')}</small>
-        <div style={styles.Actions}>
-          {isInCart ? <p>In Cart!</p> : null}
 
-          <Button.Secondary
-            onClick={() => navigate(`/products/overview/${_id}?utm=search`)}
-          >
-            Overview
-          </Button.Secondary>
-        </div>
+      <div style={styles.Body}>
+        <p style={styles.Title}>{title}</p>
+
+        <p style={styles.para}>Options - {points.join(', ')}</p>
+
+        <p style={styles.Actions}>
+          {isInCart ? <p>In Cart!</p> : null}
+          <p style={styles.price}>Rs. {price}</p>
+        </p>
       </div>
-    </div>
+    </Link>
   );
 };
 export default SearchCard;

@@ -1,0 +1,12 @@
+.search-container {
+  transition-property: box-shadow;
+  transition-duration: 400ms;
+  --box-shadow-clr: rgb(242, 242, 242);
+  margin-bottom: 1rem;
+}
+.search-container:hover {
+  z-index: 10;
+  border-radius: 5px;
+  box-shadow: 0 0 1rem .5rem var(--box-shadow-clr);
+  cursor: pointer;
+}

@@ -5,7 +5,7 @@ import useAsync from '../hooks/useAsync';
 import { fetchMobileFiles } from '../api-functions/mobileFiles';
 import SearchFilterSidebar from '../components/search-filter-bar';
 import { useActionReducer } from '../hooks/useActionReducer';
-import { useParams } from 'react-router-dom';
+import { useLoaderData, useParams } from 'react-router-dom';
 
 const filterActions = {
   sortBy: (value, prev) => {
@@ -56,9 +56,12 @@ const styles = {
   Container: {
     display: 'flex',
     padding: 0,
+    backgroundColor: 'white',
+    border: 'none',
   },
   Heading: {
-    margin: '2rem 0',
+    margin: '3rem 0',
+    fontWeight: '300',
     textAlign: 'center',
   },
 };
@@ -74,9 +77,15 @@ const filterBrand = (brand, brands) => {
   return brands.includes(brand);
 };
 
+export async function searchLoader() {
+  let mobileFiles = await fetchMobileFiles();
+
+  return { mobileFiles };
+}
+
 const SearchPage = () => {
   const query = useParams().query;
-  const [mobileFiles, runMobileFiles] = useAsync();
+  const { mobileFiles } = useLoaderData();
   const { cart } = useCartAction();
   const { state: filters, actions } = useActionReducer(
     filterActions,
@@ -84,13 +93,8 @@ const SearchPage = () => {
   );
 
   const { price, brands, sortBy } = filters;
-  console.log(filters);
 
-  useEffect(() => {
-    runMobileFiles(fetchMobileFiles());
-  }, [runMobileFiles]);
-
-  const filteredMobileFilesAll = mobileFiles.data?.all.filter(
+  const filteredMobileFilesAll = mobileFiles?.all.filter(
     (product) =>
       JSON.stringify(product).includes(query) &&
       isInRange(product.price, price.min, price.max) &&
@@ -108,20 +112,14 @@ const SearchPage = () => {
         <SearchFilterSidebar filters={filters} actions={actions} />
 
         <ul>
-          {mobileFiles.status === 'success' ? (
-            sortedMobileFilesAll.map((product) => (
-              // black box
+          {sortedMobileFilesAll.map((product) => (
+            <li key={product.id}>
               <SearchCard
-                key={product.id}
                 isInCart={cart.some((cartItem) => cartItem.pid === product._id)}
                 {...product}
               />
-            ))
-          ) : mobileFiles.status === 'loading' ? (
-            <p>Loading Mobiles</p>
-          ) : mobileFiles.status === 'error' ? (
-            <p>{mobileFiles.error}</p>
-          ) : null}
+            </li>
+          ))}
         </ul>
       </section>
     </main>

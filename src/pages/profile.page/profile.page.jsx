@@ -41,7 +41,7 @@ const ProfilePage = (props) => {
         </div>
         <Sidebar />
       </div>
-      <section className="container">
+      <section className="container profile-page">
         <Outlet />
         {/* <Route path="/profile/orders" component={OrdersPage} /> */}
       </section>

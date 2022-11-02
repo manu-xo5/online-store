@@ -1,11 +1,10 @@
-import { useUser, emptyOrders } from 'context/user';
+import { emptyOrders, useUser } from 'context/user';
+import { Link } from 'react-router-dom';
 import { Button } from '../../../components/Form';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as React from "react"
 
 export default () => {
   const { userState, dispatch } = useUser();
-  const navigate = useNavigate()
 
   const orders = userState?.orders || null;
 
@@ -19,7 +18,9 @@ export default () => {
         <p>Loading orders...</p>
       ) : orders.length > 0 ? (
         <>
-          {' '}
+          <h1 style={{ width: 'fit-content', margin: '0 auto' }}>
+            Orders History
+          </h1>
           {orders.map(
             ({
               product: { title, imgUrl, manufacturer, price },
@@ -29,9 +30,25 @@ export default () => {
               pid,
               orderedOn,
             }) => (
-              <article style={{ display: 'flex' }} key={pid}>
-                <img src={imgUrl} alt={title} />
-                <div>
+              <article
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: '1fr 1fr',
+                  padding: '2.5rem 0',
+                  borderBottom: '1px solid rgba(0 0 0 / 0.1)',
+                }}
+                key={pid}
+              >
+                <img
+                  src={imgUrl}
+                  alt={title}
+                  style={{
+                    height: '15rem',
+                    placeSelf: 'center',
+                    mixBlendMode: 'multiply',
+                  }}
+                />
+                <div style={{ marginTop: '2rem' }}>
                   <h2>{title}</h2>
                   <p>{manufacturer}</p>
                   <small>
@@ -46,15 +63,23 @@ export default () => {
               </article>
             )
           )}
-          <div style={{ display: 'flex', gap: '1rem' }}>
+
+          <div
+            style={{ display: 'flex', marginTop: '5rem', alignItems: 'center' }}
+          >
             <Button.Primary onClick={handleClearOrders}>
               Clear History
             </Button.Primary>
-            <Button.Secondary
-              onClick={() => navigate('/profile/orders/delivery-status')}
+
+            <Link
+              style={{
+                marginLeft: '2rem',
+                color: 'blue',
+              }}
+              to="/profile/orders/delivery-status"
             >
               Delivery Status
-            </Button.Secondary>
+            </Link>
           </div>
         </>
       ) : (

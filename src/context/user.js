@@ -1,13 +1,7 @@
 import * as React from 'react';
 import { useReducer, useContext, createContext } from 'react';
 
-const initUser = { currentUser: {
-  uid: 534870928,
-  displayName: 'Admin',
-  email: "admin@admin.com",
-  photoURL: "/static/img/avatar.png",
-  balance: 60000,
-}, orders: [] };
+const initUser = { currentUser: {}, orders: [] };
 const UserContext = createContext({
   userState: initUser,
   dispatch: () => {},

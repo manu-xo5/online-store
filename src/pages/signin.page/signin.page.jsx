@@ -2,11 +2,13 @@ import './signin.styles.scss';
 import React from 'react';
 import { Button, Input } from '../../components/Form';
 import { useUser } from 'context/user';
+import { useNavigate } from 'react-router-dom';
 
 const Avatar = '/static/img/avatar.png';
 
 const SignIn = () => {
   const { dispatch } = useUser();
+  const navigate = useNavigate();
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -26,6 +28,7 @@ const SignIn = () => {
           },
         },
       });
+      navigate("/")
     }
   };
 

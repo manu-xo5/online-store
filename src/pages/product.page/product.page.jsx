@@ -159,7 +159,7 @@ const ProductPage = () => {
             // is logged in ?
             currentUser.displayName == null ? (
               <p style={{ marginTop: '2rem' }}>
-                <span>Sign in to place oreder</span>
+                <span>Sign in to place order</span>
 
                 <Link
                   style={{

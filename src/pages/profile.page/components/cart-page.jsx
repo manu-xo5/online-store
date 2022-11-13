@@ -9,30 +9,6 @@ import './cart-page.scss';
 export default () => {
   let { cart, removeFromCart, emptyCart } = useCart();
   let navigate = useNavigate();
-  // cart = cart.concat([
-  //   {
-  //     pid: '553054930317915115gs',
-  //     quality: 'golden',
-  //     color: 'red',
-  //     size: 'xs',
-  //     product: {
-  //       title: '5gs',
-  //       imgUrl: '/static/img/mobiles/5gs-oppo.webp',
-  //       manufacturer: 'oppo',
-  //       points: [
-  //         'Cotton Thread',
-  //         'Blue Color',
-  //         'Batch-dyed taffeta',
-  //         'Made in India',
-  //         'Now Just for 1,900 rs',
-  //       ],
-  //       _id: '553054930317915115gs',
-  //       price: 28000,
-  //     },
-  //   },
-  // ]);
-
-  // cart = [...cart, ...cart];
   const {
     dispatch,
     userState: { currentUser },

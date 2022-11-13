@@ -2,37 +2,31 @@ import './nav.styles.scss';
 import React from 'react';
 import { useUser } from 'context/user';
 import { Link } from 'react-router-dom';
-import { FiShoppingCart } from 'react-icons/fi';
+import { FiShoppingCart, FiUser } from 'react-icons/fi';
 
 import { ALink } from '../utilities/utilities';
 import SeacrhInput from '../search/search-box.component';
+import { useCart } from 'context/cart';
 
 const AvatarImg = '/static/img/avatar.jpg';
 
 const User = () => {
   const { userState } = useUser();
+  let { cart } = useCart();
   const { displayName, photoURL } = userState.currentUser;
   const text = displayName || 'SignIn';
   const image = photoURL || AvatarImg;
   const isLogged = Boolean(displayName);
   return (
     <div className="user-avator">
-      <Link to="/profile/cart">
+      <Link to="/profile/cart" className="cart-icon-link">
         <FiShoppingCart fontSize="24" />
+        {cart?.length > 0 && <span className="cart-count">{cart.length}</span>}
       </Link>
       <div className="dropdown">
-        <ALink
-          className="wrap"
-          to={displayName ? '/profile/basicinfo' : '/signin'}
-        >
-          {text}
-          <img
-            referrerPolicy="no-referrer"
-            className="avator"
-            src={image}
-            alt="avatar"
-          />
-        </ALink>
+        <span className="wrap">
+          <FiUser fontSize={24} />
+        </span>
         {isLogged ? (
           <ul className="dropdown__menu">
             <li>
@@ -48,7 +42,13 @@ const User = () => {
               <Link to="/">Sign Out</Link>
             </li>
           </ul>
-        ) : null}
+        ) : (
+          <ul className="dropdown__menu">
+            <li>
+              <Link to="/signin">Signin</Link>
+            </li>
+          </ul>
+        )}
       </div>
     </div>
   );

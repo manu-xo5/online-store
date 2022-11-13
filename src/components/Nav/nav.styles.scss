@@ -14,6 +14,30 @@ header#main nav {
   }
 }
 
+.cart-icon-link {
+  position: relative;
+
+  .cart-count {
+    top: 0;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    // width: 0.8em;
+    // height: 0.8em;
+
+    padding: 0.2rem 0.4rem 0.1rem;
+    border-radius: 99px;
+    transform: translate(50%, -30%);
+    font-size: 12px;
+
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    background-color: var(--primary);
+    color: #fff;
+  }
+}
 .dropdown {
   position: relative;
 

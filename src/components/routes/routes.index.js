@@ -31,6 +31,7 @@ const Profile = lazy(() => import('../../pages/profile.page/profile.page'));
 const ProductPage = lazy(() => import('../../pages/product.page/product.page'));
 
 const router = createBrowserRouter([
+  { path: 'profile/cart', element: <CartPage /> },
   {
     path: '*',
     element: (
@@ -61,7 +62,6 @@ const router = createBrowserRouter([
         ),
         children: [
           { path: 'basicinfo', element: <BasicInfoPage /> },
-          { path: 'cart', element: <CartPage /> },
           {
             path: 'orders',
             element: <OrdersPage />,

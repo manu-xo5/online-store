@@ -80,33 +80,6 @@ section.container {
   }
 }
 
-main#cart {
-  article {
-    margin: 2rem 0;
-    padding: 2rem;
-    display: flex;
-    height: 364px;
-    background-color: #fff;
-    border: 1px solid;
-    border-radius: 10px;
-
-    img {
-      object-fit: contain;
-      height: 100%;
-    }
-
-    & > div {
-      display: flex;
-      align-items: flex-start;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    & > * {
-      flex: 1;
-    }
-  }
-}
 main#redeem {
   display: flex;
   flex-direction: column;

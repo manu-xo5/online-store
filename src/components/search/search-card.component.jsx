@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './search.scss';
 
 /** @type {Object.<string, React.CSSProperties>} */
@@ -40,7 +40,7 @@ const styles = {
     lineHeight: '28px',
   },
   para: {
-    fontSize: '13px',
+    fontSize: '15px',
   },
   price: {
     marginTop: '0.5rem',
@@ -61,8 +61,6 @@ const styles = {
 };
 
 const SearchCard = ({ title, desc, price, points, isInCart, _id, imgUrl }) => {
-  const navigate = useNavigate();
-
   return (
     <Link
       style={styles.Container}

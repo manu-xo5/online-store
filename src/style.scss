@@ -1,11 +1,13 @@
 @import './_variables';
+
+
 $pri-txt-c: #f51167;
 $pri-bg: #282828;
 $pri-hd-c: #111;
 
 :root {
   color: var(--pri-txt-c);
-  font-family: 'Josefin Sans';
+  font-family: 'Roboto';
 }
 
 a {
@@ -108,7 +110,6 @@ button {
 section {
   padding: 3rem;
   background-color: #f9fcf5;
-  border-top: 1px solid #eeeeee;
 
   & .bar {
     display: flex;
@@ -168,10 +169,11 @@ header .ActionBar {
   justify-content: center;
   align-items: center;
   gap: 8rem;
+  height: 4rem;
 
   label {
-    flex: 0.4;
-    // width: 100%;
+    flex: 1;
+    max-width: 40%;
   }
 }
 

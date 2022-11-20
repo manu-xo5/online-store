@@ -1,9 +1,8 @@
 [
-  { "Icon": "FaMars", "title": "Male" },
-  { "Icon": "FaVenus", "title": "Female" },
-  { "Icon": "FaCouch", "title": "Sofa" },
-  { "Icon": "FaTools", "title": "Tools" },
-  { "Icon": "FaWineGlass", "title": "Drinks" },
-  { "Icon": "FaBook", "title": "Books" },
-  { "Icon": "FaTrello", "title": "Toys" }
+  { "Icon": "FaMars", "title": "Oppo" },
+  { "Icon": "FaVenus", "title": "Vivo" },
+  { "Icon": "FaCouch", "title": "Redmi" },
+  { "Icon": "FaTools", "title": "Samsung" },
+  { "Icon": "FaWineGlass", "title": "Phone Case" },
+  { "Icon": "FaBook", "title": "Ear Buds" }
 ]

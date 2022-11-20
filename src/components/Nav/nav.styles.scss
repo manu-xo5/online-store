@@ -1,5 +1,43 @@
 @import '../../variables';
 
+#nav {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  background-color: var(--surface-2);
+  align-items: center;
+
+  padding: var(--size-5) var(--size-7);
+
+  ul {
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: var(--size-5);
+  }
+
+  ul li a {
+    color: var(--text-1);
+  }
+
+  .logo {
+    display: block;
+    width: var(--size-fluid-4);
+  }
+
+  div {
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    gap: var(--size-3);
+    color: var(--text-1);
+  }
+
+  button {
+    padding: var(--size-2);
+    border-radius: var(--radius-round);
+  }
+}
+
 header#main nav {
   padding: 1.25rem 8rem;
   display: block;
@@ -81,11 +119,18 @@ header#main nav {
   align-items: center;
   gap: 1rem;
 
-  .wrap {
-    padding: 0.5rem;
+  .icon {
+    padding: 0.7rem;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
+    border-radius: 999px;
+    opacity: 0.6;
+    transition: opacity ease 150ms;
+  }
+
+  .icon:hover {
+    opacity: 1;
   }
 }
 

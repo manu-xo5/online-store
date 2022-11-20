@@ -9,8 +9,7 @@ export default ({ Icon: IconName, title }) => {
     <Link to={`/search/${title}`}>
       <div className="cat-item">
         <Icon fontSize="48" />
-        <br />
-        {title}
+        <span>{title}</span>
       </div>
     </Link>
   );

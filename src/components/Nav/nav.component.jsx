@@ -2,7 +2,7 @@ import './nav.styles.scss';
 import React from 'react';
 import { useUser } from 'context/user';
 import { Link } from 'react-router-dom';
-import { FiShoppingCart, FiUser } from 'react-icons/fi';
+import { FiShoppingCart, FiUser, FiUserPlus } from 'react-icons/fi';
 
 import { ALink } from '../utilities/utilities';
 import SeacrhInput from '../search/search-box.component';
@@ -13,41 +13,41 @@ const AvatarImg = '/static/img/avatar.jpg';
 const User = () => {
   const { userState } = useUser();
   let { cart } = useCart();
-  const { displayName, photoURL } = userState.currentUser;
-  const text = displayName || 'SignIn';
-  const image = photoURL || AvatarImg;
+  const { displayName } = userState.currentUser;
   const isLogged = Boolean(displayName);
   return (
     <div className="user-avator">
-      <Link to="/profile/cart" className="cart-icon-link">
+      <Link to="/profile/cart" className="cart-icon-link icon">
         <FiShoppingCart fontSize="24" />
         {cart?.length > 0 && <span className="cart-count">{cart.length}</span>}
       </Link>
       <div className="dropdown">
-        <span className="wrap">
-          <FiUser fontSize={24} />
-        </span>
         {isLogged ? (
-          <ul className="dropdown__menu">
-            <li>
-              <Link to="/profile/basicinfo">{displayName}</Link>
-            </li>
-            <li>
-              <Link to="/profile/cart">Cart</Link>
-            </li>
-            <li>
-              <Link to="/profile/orders">Orders</Link>
-            </li>
-            <li>
-              <Link to="/">Sign Out</Link>
-            </li>
-          </ul>
+          <>
+            <span className="icon">
+              <FiUser fontSize={24} />
+            </span>
+            <ul className="dropdown__menu">
+              <li>
+                <Link to="/profile/basicinfo">{displayName}</Link>
+              </li>
+              <li>
+                <Link to="/profile/cart">Cart</Link>
+              </li>
+              <li>
+                <Link to="/profile/orders">Orders</Link>
+              </li>
+              <li>
+                <Link to="/">Sign Out</Link>
+              </li>
+            </ul>
+          </>
         ) : (
-          <ul className="dropdown__menu">
-            <li>
-              <Link to="/signin">Signin</Link>
-            </li>
-          </ul>
+          <span className="icon">
+            <Link to="/signin">
+              <FiUserPlus fontSize={24} />
+            </Link>
+          </span>
         )}
       </div>
     </div>

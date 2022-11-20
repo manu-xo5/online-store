@@ -1,56 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchCard from '../components/search/search-card.component';
 import { useCart as useCartAction } from '../context/cart';
-import useAsync from '../hooks/useAsync';
 import { fetchMobileFiles } from '../api-functions/mobileFiles';
 import SearchFilterSidebar from '../components/search-filter-bar';
-import { useActionReducer } from '../hooks/useActionReducer';
-import { useLoaderData, useParams } from 'react-router-dom';
-
-const filterActions = {
-  sortBy: (value, prev) => {
-    return {
-      ...prev,
-      sortBy: value,
-    };
-  },
-  minPrice: (value, prev) => {
-    return {
-      ...prev,
-      price: {
-        max: prev.price.max,
-        min: value,
-      },
-    };
-  },
-  maxPrice: (value, prev) => {
-    return {
-      ...prev,
-      price: {
-        max: value,
-        min: prev.price.min,
-      },
-    };
-  },
-  addBrand: (value, prev) => {
-    return {
-      ...prev,
-      brands: [...prev.brands, value],
-    };
-  },
-  removeBrand: (value, prev) => {
-    return {
-      ...prev,
-      brands: prev.brands.filter((brandName) => brandName !== value),
-    };
-  },
-};
-
-const initialFilters = {
-  sortBy: 0,
-  price: { min: 0, max: 50000 },
-  brands: [],
-};
+import {
+  useActionData,
+  useLoaderData,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 
 const styles = {
   Container: {
@@ -83,16 +41,22 @@ export async function searchLoader() {
   return { mobileFiles };
 }
 
+export async function searchAction() {}
+
 const SearchPage = () => {
   const query = useParams().query;
   const { mobileFiles } = useLoaderData();
+  useActionData();
   const { cart } = useCartAction();
-  const { state: filters, actions } = useActionReducer(
-    filterActions,
-    initialFilters
-  );
 
-  const { price, brands, sortBy } = filters;
+  const urlParams = new URLSearchParams(useLocation()?.search);
+
+  const brands = urlParams.getAll('brand');
+  const sortBy = urlParams.get('sortBy');
+  const price = {
+    min: urlParams.get('price_min'),
+    max: urlParams.get('price_max'),
+  };
 
   const filteredMobileFilesAll = mobileFiles?.all.filter(
     (product) =>
@@ -109,7 +73,7 @@ const SearchPage = () => {
     <main>
       <h1 style={styles.Heading}>Showing results for "{query}"</h1>
       <section style={styles.Container}>
-        <SearchFilterSidebar filters={filters} actions={actions} />
+        <SearchFilterSidebar filters={{ price, sortBy, brands }} />
 
         <ul>
           {sortedMobileFilesAll.map((product) => (

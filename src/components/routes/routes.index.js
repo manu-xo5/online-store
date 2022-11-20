@@ -9,7 +9,8 @@ import Spinner from '../../pages/loader.page';
 
 import AdminPage from '../../pages/admin.page';
 import Home, { HomeErrorBoundary, homeLoader } from '../../pages/home.page';
-import Search, { searchLoader } from '../../pages/search.page';
+// import Home from "pages/home2.page"
+import Search, { searchLoader, searchAction } from '../../pages/search.page';
 import About from '../../pages/about.page/about.page';
 import ScrollToTop from 'components/scroll-to-top';
 import { useUser } from 'context/user';
@@ -50,7 +51,12 @@ const router = createBrowserRouter([
       },
 
       { path: 'about', element: <About /> },
-      { path: 'search/:query', element: <Search />, loader: searchLoader },
+      {
+        path: 'search/:query',
+        element: <Search />,
+        loader: searchLoader,
+        action: searchAction,
+      },
       { path: 'featured', element: <Featured /> },
       { path: 'signin', element: <SignIn /> },
       {

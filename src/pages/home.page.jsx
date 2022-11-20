@@ -7,14 +7,15 @@ import Carosel from '../components/carosel';
 import CaroselItem from '../components/carosel/carosel-item/carosel-item';
 import { List } from '../components/utilities';
 import { FtItem } from '../components/FeaturedPage';
-import useAsync from '../hooks/useAsync';
 import { fetchCategories } from '../api-functions/categories';
 import { fetchMobileFiles } from '../api-functions/mobileFiles';
 
+/** @type {{[x:string]: React.CSSProperties}} */
 const styles = {
   CatCon: {
-    display: 'flex',
-    justifyContent: 'space-evenly',
+    display: 'grid',
+    gridAutoFlow: 'column',
+    gap: '3rem',
   },
   Tnq: {
     padding: '4rem 0',
@@ -86,18 +87,6 @@ const Home = () => {
           </div>
         </section>
       </div>
-
-      <section id="category">
-        <div className="bar">
-          <h2>Browse by Category</h2>
-        </div>
-
-        <ul style={styles.CatCon}>
-          {categories.map((catprops) => (
-            <CatCard key={catprops.title} {...catprops} />
-          ))}
-        </ul>
-      </section>
 
       <h2 style={styles.Tnq}>Thanks for Visitin&apos;</h2>
     </>
